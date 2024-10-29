@@ -8,7 +8,7 @@ package Proccess;
  *
  * @author Lenovo
  */
-private int masv;
+
 public class Inventory {
-    
+    private int masv;
 }
