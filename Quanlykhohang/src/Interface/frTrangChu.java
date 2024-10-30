@@ -34,7 +34,7 @@ public class frTrangChu extends javax.swing.JFrame {
                     panelMenu.setSize(width, height);
 
                     try {
-                        Thread.sleep(2);
+                        Thread.sleep(0,5);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(frTrangChu.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -52,7 +52,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 for (int i = width; i > 0; i--) {
                     panelMenu.setSize(i, height);
                     try {
-                        Thread.sleep(0, 5);
+                        Thread.sleep(0,1);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(frTrangChu.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -81,6 +81,9 @@ public class frTrangChu extends javax.swing.JFrame {
         btnXuatkho = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         lblThoat = new javax.swing.JLabel();
+        btnGiupdo = new javax.swing.JButton();
+        btnGioithieu = new javax.swing.JButton();
+        btnDangxuat = new javax.swing.JButton();
         lblMenu = new javax.swing.JLabel();
         Container = new javax.swing.JPanel();
         panelTRANGCHU = new javax.swing.JPanel();
@@ -181,8 +184,8 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addComponent(btnBaocaosolieu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelMenu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 97, -1, -1));
-        panelMenu.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 200, 150));
+        panelMenu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 51, -1, 260));
+        panelMenu.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 200, 170));
 
         lblThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Close-icon.png"))); // NOI18N
         lblThoat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,6 +194,27 @@ public class frTrangChu extends javax.swing.JFrame {
             }
         });
         panelMenu.add(lblThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 50, 40));
+
+        btnGiupdo.setBackground(new java.awt.Color(255, 102, 0));
+        btnGiupdo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnGiupdo.setText("Giúp đỡ");
+        btnGiupdo.setBorder(null);
+        btnGiupdo.setBorderPainted(false);
+        panelMenu.add(btnGiupdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 200, 40));
+
+        btnGioithieu.setBackground(new java.awt.Color(255, 102, 0));
+        btnGioithieu.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnGioithieu.setText("Giới thiệu");
+        btnGioithieu.setBorder(null);
+        btnGioithieu.setBorderPainted(false);
+        panelMenu.add(btnGioithieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 200, 40));
+
+        btnDangxuat.setBackground(new java.awt.Color(255, 102, 0));
+        btnDangxuat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnDangxuat.setText("Đăng xuất");
+        btnDangxuat.setBorder(null);
+        btnDangxuat.setBorderPainted(false);
+        panelMenu.add(btnDangxuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 200, 40));
 
         lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/menu-icon.png"))); // NOI18N
         lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,7 +227,7 @@ public class frTrangChu extends javax.swing.JFrame {
         Container.setLayout(new java.awt.CardLayout());
 
         lblTRANGCHU.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblTRANGCHU.setForeground(new java.awt.Color(0, 255, 255));
+        lblTRANGCHU.setForeground(new java.awt.Color(0, 0, 102));
         lblTRANGCHU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTRANGCHU.setText("TRANG CHỦ");
 
@@ -278,7 +302,7 @@ public class frTrangChu extends javax.swing.JFrame {
         PanelKhohang2Layout.setHorizontalGroup(
             PanelKhohang2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelKhohang2Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
@@ -362,7 +386,7 @@ public class frTrangChu extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 615, Short.MAX_VALUE)
+            .addGap(0, 687, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,7 +402,7 @@ public class frTrangChu extends javax.swing.JFrame {
             .addGroup(panelMainLayout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                    .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelMainLayout.createSequentialGroup()
                         .addComponent(lblMenu)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -474,6 +498,9 @@ public class frTrangChu extends javax.swing.JFrame {
     private javax.swing.JPanel PanelKhohang2;
     private javax.swing.JPanel PanelKhohang3;
     private javax.swing.JButton btnBaocaosolieu;
+    private javax.swing.JButton btnDangxuat;
+    private javax.swing.JButton btnGioithieu;
+    private javax.swing.JButton btnGiupdo;
     private javax.swing.JButton btnKhohang;
     private javax.swing.JButton btnNhapkho;
     private javax.swing.JButton btnTrangchu;
