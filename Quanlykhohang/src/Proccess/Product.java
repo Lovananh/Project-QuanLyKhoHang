@@ -9,5 +9,8 @@ package Proccess;
  * @author Lenovo
  */
 public class Product {
-    
+    public void Quanlykho()
+    {
+        
+    }
 }
