@@ -8,12 +8,12 @@ package Interface;
  *
  * @author Lenovo
  */
-public class frSanphamKhohang extends javax.swing.JFrame {
+public class frHanghoa extends javax.swing.JFrame {
 
     /**
      * Creates new form frSanphamKhohang
      */
-    public frSanphamKhohang() {
+    public frHanghoa() {
         initComponents();
     }
 
@@ -111,7 +111,7 @@ public class frSanphamKhohang extends javax.swing.JFrame {
         btnThoat.setBackground(java.awt.SystemColor.activeCaption);
         btnThoat.setForeground(new java.awt.Color(0, 0, 0));
         btnThoat.setText("Thoát");
-        jPanel2.add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 110, -1));
+        jPanel2.add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 120, -1));
 
         jLabel7.setBackground(new java.awt.Color(102, 102, 255));
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -124,22 +124,22 @@ public class frSanphamKhohang extends javax.swing.JFrame {
         btnThem.setBackground(java.awt.SystemColor.activeCaption);
         btnThem.setForeground(new java.awt.Color(0, 0, 0));
         btnThem.setText("Thêm");
-        jPanel2.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 110, -1));
+        jPanel2.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 120, -1));
 
         btnSuathongtin.setBackground(java.awt.SystemColor.activeCaption);
         btnSuathongtin.setForeground(new java.awt.Color(0, 0, 0));
         btnSuathongtin.setText("Sửa Thông tin");
-        jPanel2.add(btnSuathongtin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 110, -1));
+        jPanel2.add(btnSuathongtin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, -1));
 
         btnXoa.setBackground(java.awt.SystemColor.activeCaption);
         btnXoa.setForeground(new java.awt.Color(0, 0, 0));
         btnXoa.setText("Xóa ");
-        jPanel2.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, -1));
+        jPanel2.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 120, -1));
 
         btnNhaphang2.setBackground(java.awt.SystemColor.activeCaption);
         btnNhaphang2.setForeground(new java.awt.Color(0, 0, 0));
         btnNhaphang2.setText("Nhập hàng");
-        jPanel2.add(btnNhaphang2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 110, -1));
+        jPanel2.add(btnNhaphang2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 120, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 160, 240));
 
@@ -267,20 +267,21 @@ public class frSanphamKhohang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frSanphamKhohang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frHanghoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frSanphamKhohang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frHanghoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frSanphamKhohang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frHanghoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frSanphamKhohang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frHanghoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frSanphamKhohang().setVisible(true);
+                new frHanghoa().setVisible(true);
             }
         });
     }
