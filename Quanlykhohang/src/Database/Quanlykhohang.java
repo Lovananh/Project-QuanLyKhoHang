@@ -4,6 +4,8 @@
  */
 package Database;
 
+import Interface.frTrangChu;
+
 /**
  *
  * @author Lenovo
@@ -14,7 +16,8 @@ public class Quanlykhohang {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+     frTrangChu trangchu = new frTrangChu();
+     trangchu.setVisible(true);
     }
     
 }
