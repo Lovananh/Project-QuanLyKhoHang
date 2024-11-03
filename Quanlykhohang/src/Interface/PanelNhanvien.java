@@ -4,6 +4,10 @@
  */
 package Interface;
 
+import Proccess.Nhanvien;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lenovo
@@ -15,6 +19,7 @@ public class PanelNhanvien extends javax.swing.JPanel {
      */
     public PanelNhanvien() {
         initComponents();
+        loadDataToTable();
     }
 
     /**
@@ -266,21 +271,131 @@ public class PanelNhanvien extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadDataToTable() {
+        try {
+            Nhanvien NhanvienModel = new Nhanvien();
+            List<Nhanvien> list = NhanvienModel.getNhanvien();
+
+            // Lấy mô hình bảng (table model) và xóa dữ liệu cũ
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableNhanvien.getModel();
+            model.setRowCount(0);
+
+            // Thêm các hàng dữ liệu mới vào bảng
+            for (Nhanvien nv : list) {
+                model.addRow(new Object[]{nv.getmanv(), nv.gettennv(), nv.getchucvu(), nv.getsdt(), nv.getemail(), nv.getdiachi()});
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu vào bảng.");
+        }
+    }
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String manv = txtManhanvien.getText();
         String tennv = txtTennhanvien.getText();
         String chucvu = txtChucvu.getText();
-        int sodt =  Integer.parseInt(txtSodienthoai.getText());
-        
+        String sdt = txtSodienthoai.getText();
+        String email = txtEmail.getText();
+        String diachi = txtDiachi.getText();
+
+        if (manv.isEmpty() || tennv.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, " vui lòng nhập đầy đủ thông tin ");
+        } else {
+            try {
+                // khởi tạo lớp cho cho table nhanvien
+                Nhanvien nhanvien = new Nhanvien();
+                //kiểm tra trùng mã nv 
+                if (nhanvien.getNhanvien(manv) != null) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Mã loại đã tồn tại. Vui lòng nhập mã khác !");
+                    return;
+                }
+                // Thiet lap  gia trị
+                nhanvien.setmanv(manv);
+                nhanvien.settennv(tennv);
+                nhanvien.setchuvu(chucvu);
+                nhanvien.setsdt(sdt);
+                nhanvien.setemail(email);
+                nhanvien.setdiachi(diachi);
+
+                //goi ham tu lop Nhanvien
+                if (nhanvien.InsertData(nhanvien)) {
+                    // them bang vao tren giao dien
+                    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableNhanvien.getModel();
+//                    model.addRow(new Object[]{manv, tennv, chucvu, sdt, email, diachi});
+                    loadDataToTable();
+//                    updateTextFields(nhanvien);
+                    txtManhanvien.setText("");
+                    txtTennhanvien.setText("");
+                    txtChucvu.setText("");
+                    txtSodienthoai.setText("");
+                    txtEmail.setText("");
+                    txtDiachi.setText("");
+                } else {
+                    javax.swing.JOptionPane.showConfirmDialog(this, "thêm thất bại !");
+                }
+
+//                txtManhanvien.setText("");
+//                txtTennhanvien.setText("");
+//                txtChucvu.setText("");
+//                txtSodienthoai.setText("");
+//                txtEmail.setText("");
+//                txtDiachi.setText("");
+            } catch (Exception e) {
+                e.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, " Lỗi !");
+            }
+        }
 
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
+        int row = tableNhanvien.getSelectedRow();
+        //kiem tra
+        if (row != -1) {
+            String manv = txtManhanvien.getText();
+            String tennv = txtTennhanvien.getText();
+            String chucvu = txtChucvu.getText();
+            String sdt = txtSodienthoai.getText();
+            String email = txtEmail.getText();
+            String diachi = txtDiachi.getText();
+
+            if (manv.isEmpty() || tennv.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin ");
+            } else {
+                try {
+                    Nhanvien nv = new Nhanvien();
+
+                    nv.setmanv(manv);
+                    nv.settennv(tennv);
+                    nv.setchuvu(chucvu);
+                    nv.setsdt(sdt);
+                    nv.setemail(email);
+                    nv.setdiachi(diachi);
+
+                    //goi ham 
+                    if (nv.EditData(nv)) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Sửa thành công.");
+                        //cap nhat vao bang
+                        tableNhanvien.setValueAt(manv, row, 0);
+                        tableNhanvien.setValueAt(tennv, row, 1);
+                        tableNhanvien.setValueAt(chucvu, row, 2);
+                        tableNhanvien.setValueAt(sdt, row, 3);
+                        tableNhanvien.setValueAt(email, row, 4);
+                        tableNhanvien.setValueAt(diachi, row, 5);
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Sửa thất bại.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Lỗi trong quá trình sửa.");
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng chọn hàng để sửa.");
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnLammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLammoiActionPerformed
-        
+
         txtManhanvien.setText("");
         txtTennhanvien.setText("");
         txtChucvu.setText("");
@@ -290,11 +405,29 @@ public class PanelNhanvien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLammoiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        
+         int row = tableNhanvien.getSelectedRow();
+        if (row != -1) {
+            String manv = tableNhanvien.getValueAt(row, 0).toString(); // Lay ma tu table
+            try {
+                Nhanvien nv = new Nhanvien();
+                if (nv.DeleteData(manv)) {
+                    javax.swing.JOptionPane.showConfirmDialog(this, " xoa thanh cong !");
+                    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableNhanvien.getModel();
+                    model.removeRow(row);
+                } else {
+                    javax.swing.JOptionPane.showConfirmDialog(this, " xoa that bai !!!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(this, "Lỗi trong quá trình xóa.");
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng chọn hàng để xóa.");
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        
+        System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
