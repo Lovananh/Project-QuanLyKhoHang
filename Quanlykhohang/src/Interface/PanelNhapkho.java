@@ -40,7 +40,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
                 testkhoMouseClicked(evt);
             }
         });
-        add(testkho, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, -1, -1));
+        add(testkho, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         jButton1.setText("jButton1");
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
@@ -52,7 +52,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, 70));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void testkhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_testkhoMouseClicked
