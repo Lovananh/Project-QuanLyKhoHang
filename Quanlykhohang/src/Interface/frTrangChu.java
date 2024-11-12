@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Interface.PanelNhapkho;
 import Interface.PanelPhieunhap;
+import Interface.PanelNhanvien;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
@@ -26,9 +27,8 @@ public class frTrangChu extends javax.swing.JFrame {
     public frTrangChu() {
         initComponents();
         final JMenuBar menuBar = new JMenuBar();
-
+        setLocationRelativeTo(null);  //dieu chinh form ra giua man hinhf
     }
-
     int width = 200;
     int height = 500;
 
@@ -108,11 +108,12 @@ public class frTrangChu extends javax.swing.JFrame {
         lblMenu = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Trangchu = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        mINhanvien = new javax.swing.JMenuItem();
+        mnItemHanghoa = new javax.swing.JMenuItem();
+        menuitemTonkho = new javax.swing.JMenuItem();
+        menuItemBaocaosolieu = new javax.swing.JMenuItem();
+        menuItemTrangchu = new javax.swing.JMenuItem();
         mnNhanvien = new javax.swing.JMenu();
+        menuItemNhanvien = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý kho hàng");
@@ -423,42 +424,41 @@ public class frTrangChu extends javax.swing.JFrame {
         panelMain.add(panelTRANGCHU, java.awt.BorderLayout.CENTER);
 
         Trangchu.setText("Menu");
-        Trangchu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TrangchuMouseClicked(evt);
-            }
-        });
-        Trangchu.addActionListener(new java.awt.event.ActionListener() {
+
+        mnItemHanghoa.setText("Hàng hóa");
+        mnItemHanghoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TrangchuActionPerformed(evt);
+                mnItemHanghoaActionPerformed(evt);
             }
         });
+        Trangchu.add(mnItemHanghoa);
+
+        menuitemTonkho.setText("Tồn kho");
+        Trangchu.add(menuitemTonkho);
+
+        menuItemBaocaosolieu.setText("Báo cáo số liệu");
+        Trangchu.add(menuItemBaocaosolieu);
+
+        menuItemTrangchu.setText("Trangchu");
+        menuItemTrangchu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemTrangchuActionPerformed(evt);
+            }
+        });
+        Trangchu.add(menuItemTrangchu);
+
         jMenuBar1.add(Trangchu);
 
-        jMenu2.setText("Kho hàng");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Xuất hàng ");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Nhập hàng");
-
-        mINhanvien.setText("Nhân viên");
-        jMenu4.add(mINhanvien);
-
-        jMenuBar1.add(jMenu4);
-
         mnNhanvien.setText("Nhân viên");
-        mnNhanvien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnNhanvienMouseClicked(evt);
-            }
-        });
-        mnNhanvien.addActionListener(new java.awt.event.ActionListener() {
+
+        menuItemNhanvien.setText("Nhân viên");
+        menuItemNhanvien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnNhanvienActionPerformed(evt);
+                menuItemNhanvienActionPerformed(evt);
             }
         });
+        mnNhanvien.add(menuItemNhanvien);
+
         jMenuBar1.add(mnNhanvien);
 
         setJMenuBar(jMenuBar1);
@@ -471,7 +471,7 @@ public class frTrangChu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         pack();
@@ -507,6 +507,7 @@ public class frTrangChu extends javax.swing.JFrame {
         panelMain.removeAll();
         panelMain.add(xuatkho);
         panelMain.validate();
+//        switchPanel(xuatkho);
     }//GEN-LAST:event_btnXuatkhoMouseClicked
 
     private void switchPanel(JPanel panel) {
@@ -519,24 +520,25 @@ public class frTrangChu extends javax.swing.JFrame {
         openMenuBar();
     }//GEN-LAST:event_lblMenuMouseClicked
 
-    private void TrangchuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrangchuActionPerformed
-//        switchPanel(panelMain);
-    }//GEN-LAST:event_TrangchuActionPerformed
-
-    private void mnNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnNhanvienActionPerformed
-
-    }//GEN-LAST:event_mnNhanvienActionPerformed
-
-    private void mnNhanvienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnNhanvienMouseClicked
-        JPanel panelNhanvien = new PanelNhanvien();
+    private void menuItemNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemNhanvienActionPerformed
+//        switchPanel(new PanelNhanvien());
+        JPanel nhanvien = new PanelNhanvien();
         panelMain.removeAll();
-        panelMain.add(panelNhanvien);
+        panelMain.add(nhanvien);
         panelMain.validate();
-    }//GEN-LAST:event_mnNhanvienMouseClicked
+    }//GEN-LAST:event_menuItemNhanvienActionPerformed
 
-    private void TrangchuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TrangchuMouseClicked
-        switchPanel(panelMain);
-    }//GEN-LAST:event_TrangchuMouseClicked
+    private void mnItemHanghoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItemHanghoaActionPerformed
+        frHanghoa dskho = new frHanghoa();
+        dskho.setVisible(true);
+    }//GEN-LAST:event_mnItemHanghoaActionPerformed
+
+    private void menuItemTrangchuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemTrangchuActionPerformed
+        JPanel xuatkho = new PanelXuatkho();
+        panelMain.removeAll();
+        panelMain.add(xuatkho);
+        panelMain.validate();
+    }//GEN-LAST:event_menuItemTrangchuActionPerformed
 //      kho = new PanelNhapkho();
 //          panelTRANGCHU.removeAll();
 //          panelTRANGCHU.add(kho);
@@ -600,16 +602,17 @@ public class frTrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblTRANGCHU;
     private javax.swing.JLabel lblThoat;
-    private javax.swing.JMenuItem mINhanvien;
+    private javax.swing.JMenuItem menuItemBaocaosolieu;
+    private javax.swing.JMenuItem menuItemNhanvien;
+    private javax.swing.JMenuItem menuItemTrangchu;
+    private javax.swing.JMenuItem menuitemTonkho;
+    private javax.swing.JMenuItem mnItemHanghoa;
     private javax.swing.JMenu mnNhanvien;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelMenu;

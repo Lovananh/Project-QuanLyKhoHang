@@ -15,6 +15,7 @@ public class frHanghoa extends javax.swing.JFrame {
      */
     public frHanghoa() {
         initComponents();
+        setLocationRelativeTo(null);  //dieu chinh form ra giua man hinhf
     }
 
     /**
@@ -58,12 +59,6 @@ public class frHanghoa extends javax.swing.JFrame {
         setTitle("Kho hàng");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNhapActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 180, -1));
 
         tableKhohang.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,6 +106,11 @@ public class frHanghoa extends javax.swing.JFrame {
         btnThoat.setBackground(java.awt.SystemColor.activeCaption);
         btnThoat.setForeground(new java.awt.Color(0, 0, 0));
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, -1));
 
         jLabel7.setBackground(new java.awt.Color(102, 102, 255));
@@ -124,16 +124,31 @@ public class frHanghoa extends javax.swing.JFrame {
         btnThem.setBackground(java.awt.SystemColor.activeCaption);
         btnThem.setForeground(new java.awt.Color(0, 0, 0));
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 120, -1));
 
         btnSuathongtin.setBackground(java.awt.SystemColor.activeCaption);
         btnSuathongtin.setForeground(new java.awt.Color(0, 0, 0));
         btnSuathongtin.setText("Sửa Thông tin");
+        btnSuathongtin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuathongtinActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnSuathongtin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 120, -1));
 
         btnXoa.setBackground(java.awt.SystemColor.activeCaption);
         btnXoa.setForeground(new java.awt.Color(0, 0, 0));
         btnXoa.setText("Xóa ");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 120, -1));
 
         btnNhaphang2.setBackground(java.awt.SystemColor.activeCaption);
@@ -225,6 +240,11 @@ public class frHanghoa extends javax.swing.JFrame {
         btnTimkiem.setBackground(java.awt.SystemColor.activeCaption);
         btnTimkiem.setForeground(new java.awt.Color(0, 0, 0));
         btnTimkiem.setText("Tìm kiếm ");
+        btnTimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimkiemActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnTimkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 90, -1));
 
         jLabel8.setText("Nhập tên sản phẩm");
@@ -248,9 +268,25 @@ public class frHanghoa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNhapActionPerformed
+    private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNhapActionPerformed
+    }//GEN-LAST:event_btnTimkiemActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuathongtinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuathongtinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSuathongtinActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments
