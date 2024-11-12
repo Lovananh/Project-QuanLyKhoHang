@@ -245,6 +245,11 @@ public class frTrangChu extends javax.swing.JFrame {
         btnDangxuat.setText("Đăng xuất");
         btnDangxuat.setBorder(null);
         btnDangxuat.setBorderPainted(false);
+        btnDangxuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangxuatActionPerformed(evt);
+            }
+        });
         panelMenu.add(btnDangxuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 180, 40));
 
         panelMain.add(panelMenu, java.awt.BorderLayout.CENTER);
@@ -539,6 +544,10 @@ public class frTrangChu extends javax.swing.JFrame {
         panelMain.add(xuatkho);
         panelMain.validate();
     }//GEN-LAST:event_menuItemTrangchuActionPerformed
+
+    private void btnDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuatActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnDangxuatActionPerformed
 //      kho = new PanelNhapkho();
 //          panelTRANGCHU.removeAll();
 //          panelTRANGCHU.add(kho);
