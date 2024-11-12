@@ -78,7 +78,7 @@ public class PanelNhanvien extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã nhân viên", "Tên nhân viên", "Giới tính", "Chức vụ", "Số điện thoại", "Email", "Địa chỉ"
+                "Mã nhân viên", "Tên nhân viên", "Chức vụ", "Số điện thoại", "Email", "Địa chỉ", "Giới tính"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -302,7 +302,8 @@ public class PanelNhanvien extends javax.swing.JPanel {
                         .addComponent(btnThoat)
                         .addComponent(btnThem)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
     }// </editor-fold>//GEN-END:initComponents
 

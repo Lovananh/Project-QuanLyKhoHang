@@ -40,7 +40,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 for (int i = 0; i < width; i++) {
                     panelMenu.setSize(width, height);
                     try {
-                        Thread.sleep(0, 5);
+                        Thread.sleep(5);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(frTrangChu.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -58,7 +58,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 for (int i = width; i > 0; i--) {
                     panelMenu.setSize(i, height);
                     try {
-                        Thread.sleep(0, 1);
+                        Thread.sleep(5);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(frTrangChu.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -108,10 +108,11 @@ public class frTrangChu extends javax.swing.JFrame {
         lblMenu = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Trangchu = new javax.swing.JMenu();
+        menuItemTrangchu = new javax.swing.JMenuItem();
         mnItemHanghoa = new javax.swing.JMenuItem();
         menuitemTonkho = new javax.swing.JMenuItem();
         menuItemBaocaosolieu = new javax.swing.JMenuItem();
-        menuItemTrangchu = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mnNhanvien = new javax.swing.JMenu();
         menuItemNhanvien = new javax.swing.JMenuItem();
 
@@ -238,6 +239,11 @@ public class frTrangChu extends javax.swing.JFrame {
         btnGioithieu.setText("Giới thiệu");
         btnGioithieu.setBorder(null);
         btnGioithieu.setBorderPainted(false);
+        btnGioithieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGioithieuMouseClicked(evt);
+            }
+        });
         panelMenu.add(btnGioithieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, 40));
 
         btnDangxuat.setBackground(new java.awt.Color(255, 102, 0));
@@ -256,7 +262,7 @@ public class frTrangChu extends javax.swing.JFrame {
 
         Container.setBackground(new java.awt.Color(204, 204, 204));
         Container.setLayout(new java.awt.CardLayout());
-        panelMain.add(Container, java.awt.BorderLayout.PAGE_END);
+        panelMain.add(Container, java.awt.BorderLayout.CENTER);
 
         lblTRANGCHU.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblTRANGCHU.setForeground(new java.awt.Color(0, 0, 102));
@@ -289,7 +295,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGroup(PanelKhohangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         PanelKhohang1.setBackground(new java.awt.Color(51, 255, 51));
@@ -318,7 +324,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGroup(PanelKhohang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PanelKhohang2.setBackground(new java.awt.Color(51, 255, 51));
@@ -394,7 +400,11 @@ public class frTrangChu extends javax.swing.JFrame {
         panelTRANGCHULayout.setHorizontalGroup(
             panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTRANGCHULayout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addComponent(lblMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTRANGCHU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelTRANGCHULayout.createSequentialGroup()
+                .addGap(93, 93, 93)
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelKhohang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PanelKhohang2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -403,11 +413,6 @@ public class frTrangChu extends javax.swing.JFrame {
                     .addComponent(PanelKhohang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PanelKhohang3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelTRANGCHULayout.createSequentialGroup()
-                .addComponent(lblMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTRANGCHU, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelTRANGCHULayout.setVerticalGroup(
             panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,20 +420,28 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTRANGCHU))
-                .addGap(32, 32, 32)
+                .addGap(54, 54, 54)
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanelKhohang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelKhohang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PanelKhohang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelKhohang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanelKhohang2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelKhohang3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelMain.add(panelTRANGCHU, java.awt.BorderLayout.CENTER);
 
         Trangchu.setText("Menu");
+
+        menuItemTrangchu.setText("Trangchu");
+        menuItemTrangchu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemTrangchuActionPerformed(evt);
+            }
+        });
+        Trangchu.add(menuItemTrangchu);
 
         mnItemHanghoa.setText("Hàng hóa");
         mnItemHanghoa.addActionListener(new java.awt.event.ActionListener() {
@@ -439,18 +452,18 @@ public class frTrangChu extends javax.swing.JFrame {
         Trangchu.add(mnItemHanghoa);
 
         menuitemTonkho.setText("Tồn kho");
+        menuitemTonkho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuitemTonkhoActionPerformed(evt);
+            }
+        });
         Trangchu.add(menuitemTonkho);
 
         menuItemBaocaosolieu.setText("Báo cáo số liệu");
         Trangchu.add(menuItemBaocaosolieu);
 
-        menuItemTrangchu.setText("Trangchu");
-        menuItemTrangchu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemTrangchuActionPerformed(evt);
-            }
-        });
-        Trangchu.add(menuItemTrangchu);
+        jMenuItem1.setText("jMenuItem1");
+        Trangchu.add(jMenuItem1);
 
         jMenuBar1.add(Trangchu);
 
@@ -476,7 +489,7 @@ public class frTrangChu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -495,6 +508,7 @@ public class frTrangChu extends javax.swing.JFrame {
     private void btnKhohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhohangMouseClicked
         frHanghoa dskho = new frHanghoa();
         dskho.setVisible(true);
+        closeMenuBar();
     }//GEN-LAST:event_btnKhohangMouseClicked
 
     //da thanh cong
@@ -539,15 +553,26 @@ public class frTrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_mnItemHanghoaActionPerformed
 
     private void menuItemTrangchuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemTrangchuActionPerformed
+        panelMain.removeAll();
+        panelMain.add(panelTRANGCHU);
+        panelMain.validate();
+        panelMain.repaint();
+    }//GEN-LAST:event_menuItemTrangchuActionPerformed
+
+    private void btnDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuatActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnDangxuatActionPerformed
+
+    private void btnGioithieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGioithieuMouseClicked
+
+    }//GEN-LAST:event_btnGioithieuMouseClicked
+
+    private void menuitemTonkhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuitemTonkhoActionPerformed
         JPanel xuatkho = new PanelXuatkho();
         panelMain.removeAll();
         panelMain.add(xuatkho);
         panelMain.validate();
-    }//GEN-LAST:event_menuItemTrangchuActionPerformed
-
-    private void btnDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuatActionPerformed
-       this.dispose();
-    }//GEN-LAST:event_btnDangxuatActionPerformed
+    }//GEN-LAST:event_menuitemTonkhoActionPerformed
 //      kho = new PanelNhapkho();
 //          panelTRANGCHU.removeAll();
 //          panelTRANGCHU.add(kho);
@@ -612,6 +637,7 @@ public class frTrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblMenu;
