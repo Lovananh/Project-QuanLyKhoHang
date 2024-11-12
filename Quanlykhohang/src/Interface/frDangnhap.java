@@ -69,7 +69,6 @@ public class frDangnhap extends javax.swing.JFrame {
 
         jLabel3.setText("jLabel3");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -79,7 +78,6 @@ public class frDangnhap extends javax.swing.JFrame {
         jTextField2.setText("jTextField2");
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER\\Downloads\\result_hang-ton-kho.png")); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(358, 218));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +85,7 @@ public class frDangnhap extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
@@ -131,7 +129,7 @@ public class frDangnhap extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addGap(64, 64, 64))
         );
 
