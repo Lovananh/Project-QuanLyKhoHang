@@ -24,48 +24,80 @@ public class PanelNhapkho extends javax.swing.JPanel {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        testkho = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        testkho.setText("jButton1");
-        testkho.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                testkhoMouseClicked(evt);
-            }
-        });
-        add(testkho, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
-
-        jButton1.setText("jButton1");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
-
-        jTextField2.setText("jTextField2");
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, -1));
-
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, 70));
-    }// </editor-fold>//GEN-END:initComponents
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 660, 170));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, 10));
 
-    private void testkhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_testkhoMouseClicked
-        
-    }//GEN-LAST:event_testkhoMouseClicked
+        jButton3.setText("jButton3");
+        jPanel2.add(jButton3);
+
+        jButton4.setText("jButton4");
+        jPanel2.add(jButton4);
+
+        jButton5.setText("jButton5");
+        jPanel2.add(jButton5);
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 370, 40));
+
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
+
+        jLabel2.setText("jLabel2");
+        jPanel3.add(jLabel2);
+
+        jTextField3.setText("jTextField3");
+        jPanel3.add(jTextField3);
+
+        jLabel3.setText("jLabel3");
+        jPanel3.add(jLabel3);
+
+        jTextField4.setText("jTextField4");
+        jPanel3.add(jTextField4);
+
+        jLabel4.setText("jLabel4");
+        jPanel3.add(jLabel4);
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 510, 90));
+    }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton testkho;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
