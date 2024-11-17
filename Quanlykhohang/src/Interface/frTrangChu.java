@@ -136,6 +136,11 @@ public class frTrangChu extends javax.swing.JFrame {
         btnBaocaosolieu.setText("Báo cáo số liệu");
         btnBaocaosolieu.setBorder(null);
         btnBaocaosolieu.setBorderPainted(false);
+        btnBaocaosolieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBaocaosolieuMouseClicked(evt);
+            }
+        });
 
         btnTrangchu.setBackground(new java.awt.Color(255, 102, 0));
         btnTrangchu.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -573,6 +578,12 @@ public class frTrangChu extends javax.swing.JFrame {
         panelMain.add(xuatkho);
         panelMain.validate();
     }//GEN-LAST:event_menuitemTonkhoActionPerformed
+
+    private void btnBaocaosolieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBaocaosolieuMouseClicked
+        frBaocaosolieu baocao = new frBaocaosolieu();
+        baocao.setVisible(true);
+        closeMenuBar();
+    }//GEN-LAST:event_btnBaocaosolieuMouseClicked
 //      kho = new PanelNhapkho();
 //          panelTRANGCHU.removeAll();
 //          panelTRANGCHU.add(kho);

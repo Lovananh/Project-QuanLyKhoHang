@@ -7,6 +7,7 @@ package Interface;
 import Proccess.Hanghoa;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -64,7 +65,7 @@ public class frHanghoa extends javax.swing.JFrame {
         setTitle("Kho hàng");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(txtNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 180, -1));
+        jPanel1.add(txtNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 160, -1));
 
         tableHanghoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -254,10 +255,10 @@ public class frHanghoa extends javax.swing.JFrame {
                 btnTimkiemActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTimkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 90, -1));
+        jPanel1.add(btnTimkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 100, -1));
 
         jLabel8.setText("Nhập tên hàng hóa :");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 100, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,7 +301,36 @@ public class frHanghoa extends javax.swing.JFrame {
         }
     }
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-        // TODO add your handling code here:
+         String Nhaptenhh = txtNhap.getText().trim();  // Lấy tên nhập vào từ TextField
+        if (Nhaptenhh.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập tên hàng  để tìm kiếm.");
+            return;
+        }
+
+        try {
+            // Tạo đối tượng Nhanvien
+            Hanghoa hh = new Hanghoa();
+
+            // Gọi phương thức timKiemhanghoaTheoTen thông qua đối tượng
+            List<Hanghoa> dshanghoa = hh.timKiemHanghoa(Nhaptenhh);
+
+            // Xóa dữ liệu hiện có trong bảng
+            DefaultTableModel modelHanghoa = (DefaultTableModel) tableHanghoa.getModel();
+            modelHanghoa.setRowCount(0);
+
+            // Thêm kết quả tìm kiếm vào bảng
+            for (Hanghoa n : dshanghoa) {
+                modelHanghoa.addRow(new Object[]{ n.getMahh(),n.getTenhh(),n.getSoluong(),n.getGia(),n.getDonvt(),n.getTinhtrang()});
+            }
+
+            // Hiển thị thông báo nếu không tìm thấy
+            if (dshanghoa.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên nào có tên: " + Nhaptenhh);
+            }
+
+        } catch (SQLException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Lỗi khi tìm kiếm nhân viên: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed

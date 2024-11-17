@@ -164,6 +164,8 @@ public class Hanghoa {
                     list.add(hh);
                 }
             }
+        } catch (SQLException ex) {
+            System.err.println("Lỗi khi tìm kiếm hàng hóa: " + ex.getMessage());
         }
         return list;
     }
