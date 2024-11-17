@@ -40,7 +40,7 @@ public class frDangnhap extends javax.swing.JFrame {
         lblDangnhap = new javax.swing.JLabel();
         lblTendangnhap = new javax.swing.JLabel();
         btnDangnhap = new javax.swing.JButton();
-        btnDangky = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         lblMatkhau = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
@@ -77,7 +77,7 @@ public class frDangnhap extends javax.swing.JFrame {
 
         btnDangnhap.setText("Đăng nhập");
 
-        btnDangky.setText("Đăng ký");
+        btnThoat.setText("Thoát");
 
         lblMatkhau.setText("Mật khẩu:");
 
@@ -94,7 +94,7 @@ public class frDangnhap extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(btnDangnhap)
                         .addGap(48, 48, 48)
-                        .addComponent(btnDangky)
+                        .addComponent(btnThoat)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -130,7 +130,7 @@ public class frDangnhap extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDangnhap)
-                            .addComponent(btnDangky)))
+                            .addComponent(btnThoat)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel1)))
@@ -142,7 +142,7 @@ public class frDangnhap extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -197,8 +197,8 @@ public class frDangnhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDangky;
     private javax.swing.JButton btnDangnhap;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
