@@ -40,9 +40,9 @@
                   <Component id="jPanel2" max="32767" attributes="0"/>
                   <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="151" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,25 +78,25 @@
                       <Component id="txtGia" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel5" min="-2" pref="74" max="-2" attributes="0"/>
-                              <Component id="jLabel8" min="-2" pref="61" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblMahang" max="32767" attributes="0"/>
+                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel5" alignment="0" pref="74" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="txtSoluong" min="-2" pref="108" max="-2" attributes="0"/>
                               <Component id="txtMathukho" min="-2" pref="108" max="-2" attributes="0"/>
+                              <Component id="txtSoluong" min="-2" pref="108" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="lblMahang" min="-2" pref="61" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="txtMahang" min="-2" pref="108" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,10 +116,10 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtSophieuxuat" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMathukho" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtMathukho" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -132,10 +132,8 @@
                               <Component id="txtGia" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="txtSoluong" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSoluong" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -210,13 +208,13 @@
         <Component class="javax.swing.JTable" name="tableHangxuat">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="3">
+              <Table columnCount="8" rowCount="4">
                 <Column editable="false" title="STT" type="java.lang.Object"/>
+                <Column editable="false" title="M&#xe3; h&#xe0;ng" type="java.lang.Object"/>
                 <Column editable="false" title="M&#xe3; nh&#xe2;n vi&#xea;n" type="java.lang.Object"/>
                 <Column editable="false" title="S&#x1ed1; phi&#x1ebf;u xu&#x1ea5;t " type="java.lang.Object"/>
                 <Column editable="false" title="Ng&#xe0;y xu&#x1ea5;t " type="java.lang.Object"/>
                 <Column editable="false" title="M&#xe3; th&#x1ee7; kho" type="java.lang.Object"/>
-                <Column editable="false" title="M&#xe3; h&#xe0;ng" type="java.lang.Object"/>
                 <Column editable="false" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                 <Column editable="false" title="Gi&#xe1;" type="java.lang.Object"/>
               </Table>
