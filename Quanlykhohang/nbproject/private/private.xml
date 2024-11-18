@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/Interface/PanelNhanvien.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>22</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Proccess/Product.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Proccess/Inventory.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Interface/frNhapAndXuatHang.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Interface/frBaocaosolieu.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Database/Quanlykhohang.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Interface/frDangnhap.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Database/Connnect.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Proccess/Transaction.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Interface/frDangky.java</file>
-            <file>file:/D:/Laptrinh%20N_3/java/Bai%20tren%20lop/Quanlykhohang/src/Interface/frDanhsachSanpham.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Máy%20tính/Project-QuanLyKhoHang/Quanlykhohang/src/Interface/frTrangChu.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Máy%20tính/Project-QuanLyKhoHang/Quanlykhohang/src/Proccess/Hangxuat.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Máy%20tính/Project-QuanLyKhoHang/Quanlykhohang/src/Interface/PanelXuatkho.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Máy%20tính/Project-QuanLyKhoHang/Quanlykhohang/src/Interface/frHanghoa.java</file>
+            <file>file:/C:/Users/Lenovo/OneDrive/Máy%20tính/Project-QuanLyKhoHang/Quanlykhohang/src/Proccess/Hanghoa.java</file>
         </group>
     </open-files>
 </project-private>
