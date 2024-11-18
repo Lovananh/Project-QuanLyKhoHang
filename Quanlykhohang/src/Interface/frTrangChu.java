@@ -456,8 +456,8 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addComponent(lblMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTRANGCHU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelTRANGCHULayout.createSequentialGroup()
-                .addGap(93, 93, 93)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTRANGCHULayout.createSequentialGroup()
+                .addGap(166, 166, 166)
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelKhohang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PanelKhohang2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -465,7 +465,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelKhohang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PanelKhohang3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(134, 134, 134))
         );
         panelTRANGCHULayout.setVerticalGroup(
             panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +473,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTRANGCHU))
-                .addGap(54, 54, 54)
+                .addGap(18, 18, 18)
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanelKhohang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelKhohang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -481,7 +481,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGroup(panelTRANGCHULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanelKhohang2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelKhohang3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         panelMain.add(panelTRANGCHU, java.awt.BorderLayout.CENTER);
@@ -513,6 +513,11 @@ public class frTrangChu extends javax.swing.JFrame {
         Trangchu.add(menuitemTonkho);
 
         menuItemBaocaosolieu.setText("Báo cáo số liệu");
+        menuItemBaocaosolieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBaocaosolieuActionPerformed(evt);
+            }
+        });
         Trangchu.add(menuItemBaocaosolieu);
 
         jMenuItem1.setText("jMenuItem1");
@@ -538,11 +543,11 @@ public class frTrangChu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         pack();
@@ -575,7 +580,7 @@ public class frTrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNhapkhoActionPerformed
 
     private void btnXuatkhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatkhoMouseClicked
-        JPanel xuatkho = new PanelNhapkho();
+        JPanel xuatkho = new PanelXuatkho();
         panelMain.removeAll();
         panelMain.add(xuatkho);
         panelMain.validate();
@@ -621,10 +626,8 @@ public class frTrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGioithieuMouseClicked
 
     private void menuitemTonkhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuitemTonkhoActionPerformed
-        JPanel xuatkho = new PanelXuatkho();
-        panelMain.removeAll();
-        panelMain.add(xuatkho);
-        panelMain.validate();
+       frQuanlytonkho tonkho = new frQuanlytonkho();
+        tonkho.setVisible(true);
     }//GEN-LAST:event_menuitemTonkhoActionPerformed
 
     private void btnBaocaosolieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBaocaosolieuMouseClicked
@@ -632,6 +635,11 @@ public class frTrangChu extends javax.swing.JFrame {
         baocao.setVisible(true);
         closeMenuBar();
     }//GEN-LAST:event_btnBaocaosolieuMouseClicked
+
+    private void menuItemBaocaosolieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBaocaosolieuActionPerformed
+        frBaocaosolieu baocao = new frBaocaosolieu();
+        baocao.setVisible(true);
+    }//GEN-LAST:event_menuItemBaocaosolieuActionPerformed
 //      kho = new PanelNhapkho();
 //          panelTRANGCHU.removeAll();
 //          panelTRANGCHU.add(kho);
