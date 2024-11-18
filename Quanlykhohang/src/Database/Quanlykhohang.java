@@ -5,19 +5,22 @@
 package Database;
 
 import Interface.frTrangChu;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-/**
- *
- * @author Lenovo
- */
 public class Quanlykhohang {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-     frTrangChu trangchu = new frTrangChu();
-     trangchu.setVisible(true);
+        frTrangChu trangchu = new frTrangChu();
+        trangchu.setVisible(true);
+        Connect dbConnect = new Connect();
+        try {
+            Connection conn = dbConnect.connectSQL();
+            if (conn != null) {
+                System.out.println("Kết nối thành công!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    
 }
