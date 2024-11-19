@@ -89,6 +89,9 @@ public class Hangxuat {
     }
 
     public List<Hanghoa> getDSHanghoa() {
+        if (dsHanghoa == null) {
+            dsHanghoa = new ArrayList<>(); // Khởi tạo danh sách nếu nó là null
+        }
         return dsHanghoa;
     }
 
@@ -101,7 +104,7 @@ public class Hangxuat {
     //truy van vao table
     public List<Hangxuat> getHangxuat() throws SQLException {
 
-        String sql = "SELECT Hangxuat.Manv, Hangxuat.Sophieuxuat, Hangxuat.Ngayxuat, "
+        String sql = "SELECT Hangxuat.Manv, Hangxuat.Sophieuxuat, Hangxuat.Ngayxuat, Hangxuat.Mathukho,"
                 + "Hanghoa.Mahang, Hanghoa.Gia, Phieuxuat.Soluongxuat "
                 + "FROM Hangxuat, Hanghoa, Phieuxuat "
                 + "WHERE Hangxuat.Sophieuxuat = Phieuxuat.Sophieuxuat "
@@ -127,7 +130,7 @@ public class Hangxuat {
 
     // truy van vao  1 dong
     public Hangxuat getHangxuat(int SoPhieuXuat) throws SQLException {
-        String sql = "SELECT Hangxuat.Manv, Hangxuat.Sophieuxuat, Hangxuat.Ngayxuat, "
+        String sql = "SELECT Hangxuat.Manv, Hangxuat.Sophieuxuat, Hangxuat.Ngayxuat, Hangxuat.Mathukho,"
                 + "Hanghoa.Mahang, Hanghoa.Gia, Phieuxuat.Soluongxuat "
                 + "FROM Hangxuat, Hanghoa, Phieuxuat "
                 + "WHERE Hangxuat.Sophieuxuat = Phieuxuat.Sophieuxuat "
@@ -155,127 +158,69 @@ public class Hangxuat {
 
 // them
     public boolean InsertHangxuat(Hangxuat obj) throws SQLException {
-        if (!CheckHangxuat(obj)) {
-            return false;
+        if (obj == null) {
+            System.out.println("Dữ liệu hàng xuất không hợp lệ.");
+            return false; 
         }
         String sqlHangxuat = "INSERT INTO Hangxuat (Manv, Sophieuxuat, Ngayxuat, Mathukho) VALUES (?, ?, ?, ?)";
-        String sqlPhieuxuat = "INSERT INTO Phieuxuat ( Mahang,Sophieuxuat, Soluongxuat) VALUES (?, ?, ?)";
+        String sqlphieuxuat = "INSERT INTO Phieuxuat (Mahang, Sophieuxuat, Soluongxuat) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = cn.connectSQL()) {
-            conn.setAutoCommit(false);
-            try (PreparedStatement pshangxuat = conn.prepareStatement(sqlHangxuat); PreparedStatement psphieuxuat = conn.prepareStatement(sqlPhieuxuat)) {
+            // Bắt đầu một transaction
+            conn.setAutoCommit(false);  // Tắt chế độ tự động commit
+
+            try (PreparedStatement pshangxuat = conn.prepareStatement(sqlHangxuat); PreparedStatement psphieuxuat = conn.prepareStatement(sqlphieuxuat)) {
+
+                // Thiết lập các tham số cho câu lệnh INSERT vào bảng Hangxuat
                 pshangxuat.setString(1, obj.getManv());
                 pshangxuat.setInt(2, obj.getSophieuxuat());
                 pshangxuat.setDate(3, new java.sql.Date(obj.getNgayxuat().getTime()));
                 pshangxuat.setString(4, obj.getMathukho());
-                pshangxuat.executeUpdate();
 
-                for (Hanghoa hanghoa : obj.getDSHanghoa()) {
-                    psphieuxuat.setString(1, hanghoa.getMahh());
-                    psphieuxuat.setInt(2, obj.getSophieuxuat());
-                    psphieuxuat.setInt(3, hanghoa.getSoluong());
-                    psphieuxuat.executeUpdate();
+                // Thiết lập các tham số cho câu lệnh INSERT vào bảng Phieuxuat
+                psphieuxuat.setString(1, obj.getMahang());
+                psphieuxuat.setInt(2, obj.getSophieuxuat());
+                psphieuxuat.setInt(3, obj.getSoluong());
+
+                // Thực thi câu lệnh chèn vào bảng Hangxuat
+                int result1 = pshangxuat.executeUpdate();
+                // Thực thi câu lệnh chèn vào bảng Phieuxuat
+                int result2 = psphieuxuat.executeUpdate();
+
+                // Nếu cả hai câu lệnh đều thành công, commit transaction
+                if (result1 > 0 && result2 > 0) {
+                    conn.commit(); // Commit transaction
+                    return true;
+                } else {
+                    conn.rollback(); // Nếu có lỗi, rollback transaction
+                    return false;
                 }
-                // Commit các thay đổi
-                conn.commit();
-                return true;
-
             } catch (SQLException e) {
-                // Rollback nếu có lỗi xảy ra
-                conn.rollback();
+                conn.rollback(); // Rollback nếu có lỗi xảy ra trong quá trình thực thi
                 e.printStackTrace();
                 return false;
-            } finally {
-                // Bật lại chế độ auto-commit
-                conn.setAutoCommit(true);
             }
         }
     }
-
-    private boolean CheckHangxuat(Hangxuat obj) {
-        // Kiểm tra nếu đối tượng Hangxuat hoặc danh sách hàng hóa là null hoặc trống
-        if (obj == null || obj.getDSHanghoa() == null || obj.getDSHanghoa().isEmpty()) {
-            System.out.println("Dữ liệu không hợp lệ hoặc danh sách hàng hóa trống.");
-            return false;
-        }
-
-        // Kiểm tra các trường trong Hangxuat
-        if (obj.getManv() == null || obj.getManv().isEmpty()) {
-            System.out.println("Mã nhân viên không hợp lệ.");
-            return false;
-        }
-
-        if (obj.getNgayxuat() == null) {
-            System.out.println("Ngày xuất không hợp lệ.");
-            return false;
-        }
-
-        if (obj.getMathukho() == null || obj.getMathukho().isEmpty()) {
-            System.out.println("Mã thủ kho không hợp lệ.");
-            return false;
-        }
-
-        // Kiểm tra từng mặt hàng trong danh sách hàng hóa
-        for (Hanghoa hanghoa : obj.getDSHanghoa()) {
-            if (hanghoa.getMahh() == null || hanghoa.getMahh().isEmpty()) {
-                System.out.println("Mã hàng hóa không hợp lệ.");
-                return false;
-            }
-
-            if (hanghoa.getSoluong() <= 0) {
-                System.out.println("Số lượng xuất phải lớn hơn 0.");
-                return false;
-            }
-        }
-
-        return true; // Nếu tất cả các điều kiện đều hợp lệ
-    }
-// sua thong tin
 
     public boolean EditHangxuat(Hangxuat obj) throws SQLException {
-        if (!CheckHangxuat(obj)) {
+        if (obj == null) {
+            System.out.println("Dữ liệu hàng xuất không hợp lệ.");
             return false;
         }
-
-        String sqlhangxuat = "UPDATE Hangxuat SET Manv = ?, Ngayxuat = ?, Mathukho = ? WHERE Sophieuxuat = ?";
-        String sqlphieuxuat = "UPDATE Phieuxuat SET Mahang = ?, Soluongxuat=? WHERE Sophieuxuat = ?";
-
+        String sqlhangxuat = "UPDATE Hangxuat SET Sophieuxuat = ?, Ngayxuat = ?, Mathukho = ? WHERE Manv = ?";
         try (Connection conn = cn.connectSQL()) {
-            conn.setAutoCommit(false);
 
-            try (PreparedStatement pshangxuat = conn.prepareStatement(sqlhangxuat); PreparedStatement psphieuxuat = conn.prepareStatement(sqlphieuxuat)) {
+            PreparedStatement pshangxuat = conn.prepareStatement(sqlhangxuat);
 
-                // Cập nhật bảng Hangxuat
-                pshangxuat.setString(1, obj.getManv());
-                pshangxuat.setDate(2, new java.sql.Date(obj.getNgayxuat().getTime()));
-                pshangxuat.setString(3, obj.getMathukho());
-                pshangxuat.setInt(4, obj.getSophieuxuat());
-                pshangxuat.executeUpdate();
+            // Cập nhật bảng Hangxuat
+            pshangxuat.setInt(1, obj.getSophieuxuat());
+            pshangxuat.setDate(2, new java.sql.Date(obj.getNgayxuat().getTime()));
+            pshangxuat.setString(3, obj.getMathukho());
+            pshangxuat.setString(4, obj.getManv());
 
-                // Cập nhật từng mặt hàng trong danh sách hàng hóa
-                for (Hanghoa hanghoa : obj.getDSHanghoa()) {
-                    psphieuxuat.setString(1, hanghoa.getMahh());
-                    psphieuxuat.setInt(2, hanghoa.getSoluong());
-                    psphieuxuat.setInt(3, obj.getSophieuxuat());
-                    psphieuxuat.executeUpdate();
-                }
+            return pshangxuat.executeUpdate() > 0;
 
-                // Commit các thay đổi
-                conn.commit();
-                return true;
-
-            } catch (SQLException e) {
-                // Rollback nếu có lỗi xảy ra
-                conn.rollback();
-                e.printStackTrace(); // In thông tin chi tiết lỗi
-                return false;
-            } finally {
-                // Bật lại chế độ auto-commit
-                conn.setAutoCommit(true);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // In thông tin chi tiết lỗi kết nối cơ sở dữ liệu
-            return false;
         }
     }
 

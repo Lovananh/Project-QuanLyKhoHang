@@ -4,6 +4,11 @@
  */
 package Interface;
 
+import Interface.frDangnhap.PasswordUtils;
+import Proccess.Account;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  *
  * @author Lenovo
@@ -15,6 +20,7 @@ public class frDangky extends javax.swing.JFrame {
      */
     public frDangky() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,74 +44,90 @@ public class frDangky extends javax.swing.JFrame {
         lblHovaten = new javax.swing.JLabel();
         txtHovaten = new javax.swing.JTextField();
         btnThoat = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblDacotk = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
+        lblMatkhau.setForeground(new java.awt.Color(0, 0, 0));
         lblMatkhau.setText("Mật khẩu :");
 
+        lblNhaplaimk.setForeground(new java.awt.Color(0, 0, 0));
         lblNhaplaimk.setText("Nhập lại mật khẩu :");
 
         btnDangky.setText("Đăng ký ");
+        btnDangky.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangkyActionPerformed(evt);
+            }
+        });
 
+        lblEmail.setForeground(new java.awt.Color(0, 0, 0));
         lblEmail.setText("Email :");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Đăng ký");
 
+        lblHovaten.setForeground(new java.awt.Color(0, 0, 0));
         lblHovaten.setText("Họ và tên :");
 
         btnThoat.setText("Thoát ");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel2.setText(" Đã có tài khoản ");
+        lblDacotk.setForeground(new java.awt.Color(51, 51, 255));
+        lblDacotk.setText(" Đã có tài khoản ?");
+        lblDacotk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDacotkMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMatkhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHovaten, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtHovaten)
+                            .addComponent(txtMatkhau, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNhaplaimk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNhaplaimk, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblMatkhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblHovaten, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtHovaten)
-                                    .addComponent(txtMatkhau, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblNhaplaimk, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNhaplaimk)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel2))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addGap(121, 121, 121)
+                        .addComponent(lblDacotk, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnDangky)
                 .addGap(38, 38, 38)
                 .addComponent(btnThoat)
                 .addGap(103, 103, 103))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtHovaten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHovaten, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,9 +143,9 @@ public class frDangky extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel2)
-                .addGap(8, 8, 8)
+                .addGap(18, 18, 18)
+                .addComponent(lblDacotk)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThoat)
                     .addComponent(btnDangky))
@@ -145,6 +167,78 @@ public class frDangky extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    //mã hóa mật khẩu lại 
+    public class PasswordUtils {
+
+        public static String hashPassword(String password) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                byte[] hashedPassword = md.digest(password.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for (byte b : hashedPassword) {
+                    sb.append(String.format("%02x", b));
+                }
+                return sb.toString();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    private void btnDangkyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangkyActionPerformed
+        String hovaten = txtHovaten.getText();
+        String matkhau = txtMatkhau.getText();
+        String nhaplaimk = txtNhaplaimk.getText();
+        String email = txtEmail.getText();
+
+        if (hovaten.isEmpty() || matkhau.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, " Vui lòng nhập đầy đủ thông tin ");
+            return;
+        }
+        if (!matkhau.equals(nhaplaimk)) {
+            javax.swing.JOptionPane.showMessageDialog(this, " Mật khẩu không khớp. Vui lòng nhập lại ");
+            return;
+        }
+
+        String hashedPass = PasswordUtils.hashPassword(matkhau);
+        Account dk = new Account();
+        // ktr đã có tk chưa
+        if (dk.CheckAccount(hovaten)) {
+            javax.swing.JOptionPane.showMessageDialog(this, " Đã có tài khoản. Vui lòng nhập lại ");
+            return;
+        }
+        //add
+        if (dk.AddAccount(hovaten, hashedPass, email)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Đăng ký thành công");
+            
+            
+            this.dispose();
+            frDangnhap dangnhap = new frDangnhap();
+            dangnhap.setVisible(true);  // chuyen sang frame dang nhap
+            
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Đăng ký không thành công, vui lòng thử lại!");
+        }
+
+        // clear
+        txtHovaten.setText("");
+        txtMatkhau.setText("");
+        txtNhaplaimk.setText("");
+        txtEmail.setText("");
+    }//GEN-LAST:event_btnDangkyActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void lblDacotkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDacotkMouseClicked
+        this.dispose();
+        frDangnhap dangnhap = new frDangnhap();
+        dangnhap.setVisible(true);
+
+    }//GEN-LAST:event_lblDacotkMouseClicked
 
     /**
      * @param args the command line arguments
@@ -185,8 +279,8 @@ public class frDangky extends javax.swing.JFrame {
     private javax.swing.JButton btnDangky;
     private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblDacotk;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblHovaten;
     private javax.swing.JLabel lblMatkhau;

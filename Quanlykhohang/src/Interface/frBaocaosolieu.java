@@ -29,7 +29,7 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
         Main = new javax.swing.JPanel();
         Container = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lblBaocaosolieu = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         lblHangnhap = new javax.swing.JLabel();
@@ -43,7 +43,7 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnBaocaoXuat = new javax.swing.JButton();
         btnThoat2 = new javax.swing.JButton();
-        lblHangnhap1 = new javax.swing.JLabel();
+        lblHangxuat = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         lblTungay1 = new javax.swing.JLabel();
         lblDenngay1 = new javax.swing.JLabel();
@@ -59,23 +59,23 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         txtFromtonkho = new javax.swing.JTextField();
         txtTotonkho = new javax.swing.JTextField();
         Hoadon = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblHANGNHAP = new javax.swing.JLabel();
+        lblTungayn = new javax.swing.JLabel();
+        lblDenngayn = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TableHangnhap = new javax.swing.JTable();
         Hoadontonkho = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblTONKHO = new javax.swing.JLabel();
+        lblTungaytk = new javax.swing.JLabel();
+        lblDenngaytk = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        TableTonkho = new javax.swing.JTable();
         HoadonXuat = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblHANGXUAT = new javax.swing.JLabel();
+        lblTungayx = new javax.swing.JLabel();
+        lblDenngayx = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        TableHangxuat = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,10 +83,10 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
         Container.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Báo cáo số liệu");
+        lblBaocaosolieu.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblBaocaosolieu.setForeground(new java.awt.Color(0, 0, 0));
+        lblBaocaosolieu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBaocaosolieu.setText("Báo cáo số liệu");
 
         jTabbedPane2.setBackground(java.awt.SystemColor.activeCaption);
         jTabbedPane2.setToolTipText("");
@@ -133,8 +133,18 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         );
 
         btnBaocaoNhap.setText("Báo cáo");
+        btnBaocaoNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaocaoNhapActionPerformed(evt);
+            }
+        });
 
         btnThoat1.setText("Thoát");
+        btnThoat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoat1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -169,12 +179,22 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         jTabbedPane2.addTab("Nhập hàng", jPanel2);
 
         btnBaocaoXuat.setText("Báo cáo");
+        btnBaocaoXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaocaoXuatActionPerformed(evt);
+            }
+        });
 
         btnThoat2.setText("Thoát");
+        btnThoat2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoat2ActionPerformed(evt);
+            }
+        });
 
-        lblHangnhap1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblHangnhap1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHangnhap1.setText("Báo cáo hàng xuất");
+        lblHangxuat.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblHangxuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHangxuat.setText("Báo cáo hàng xuất");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -217,7 +237,7 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblHangnhap1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblHangxuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(162, 162, 162)
                 .addComponent(btnBaocaoXuat)
@@ -233,7 +253,7 @@ public class frBaocaosolieu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(lblHangnhap1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
@@ -246,8 +266,18 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         jTabbedPane2.addTab("Xuất hàng", jPanel1);
 
         btnBaocaoTonkho.setText("Báo cáo");
+        btnBaocaoTonkho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaocaoTonkhoActionPerformed(evt);
+            }
+        });
 
         btnThoat3.setText("Thoát");
+        btnThoat3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoat3ActionPerformed(evt);
+            }
+        });
 
         lblHangtonkho.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblHangtonkho.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -326,7 +356,7 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         Container.setLayout(ContainerLayout);
         ContainerLayout.setHorizontalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblBaocaosolieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,7 +365,7 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         ContainerLayout.setVerticalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContainerLayout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(lblBaocaosolieu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2)
                 .addContainerGap())
@@ -345,26 +375,34 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
         Hoadon.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Hàng nhập");
+        lblHANGNHAP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblHANGNHAP.setForeground(new java.awt.Color(0, 0, 0));
+        lblHANGNHAP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHANGNHAP.setText("Hàng nhập");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Từ ngày :");
+        lblTungayn.setForeground(new java.awt.Color(0, 0, 0));
+        lblTungayn.setText("Từ ngày :");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Đến ngày:");
+        lblDenngayn.setForeground(new java.awt.Color(0, 0, 0));
+        lblDenngayn.setText("Đến ngày:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableHangnhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã hàng", "Đơn vị tính", "Số lượng", "Đơn giá"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TableHangnhap);
 
         javax.swing.GroupLayout HoadonLayout = new javax.swing.GroupLayout(Hoadon);
         Hoadon.setLayout(HoadonLayout);
@@ -378,12 +416,12 @@ public class frBaocaosolieu extends javax.swing.JFrame {
                 .addGroup(HoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HoadonLayout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                        .addComponent(lblTungayn, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                         .addGap(99, 99, 99)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+                        .addComponent(lblDenngayn, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                     .addGroup(HoadonLayout.createSequentialGroup()
                         .addGap(144, 144, 144)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblHANGNHAP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)))
                 .addGap(127, 127, 127))
         );
@@ -391,11 +429,11 @@ public class frBaocaosolieu extends javax.swing.JFrame {
             HoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HoadonLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHANGNHAP, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(HoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(lblTungayn)
+                    .addComponent(lblDenngayn))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(182, Short.MAX_VALUE))
@@ -405,26 +443,34 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
         Hoadontonkho.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Tồn kho");
+        lblTONKHO.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblTONKHO.setForeground(new java.awt.Color(0, 0, 0));
+        lblTONKHO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTONKHO.setText("Tồn kho");
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Từ ngày :");
+        lblTungaytk.setForeground(new java.awt.Color(0, 0, 0));
+        lblTungaytk.setText("Từ ngày :");
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Đến ngày:");
+        lblDenngaytk.setForeground(new java.awt.Color(0, 0, 0));
+        lblDenngaytk.setText("Đến ngày:");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        TableTonkho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã hàng", "Tên hàng", "Lượng nhập", "Lượng xuất", "Tồn kho"
             }
-        ));
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(TableTonkho);
 
         javax.swing.GroupLayout HoadontonkhoLayout = new javax.swing.GroupLayout(Hoadontonkho);
         Hoadontonkho.setLayout(HoadontonkhoLayout);
@@ -434,13 +480,13 @@ public class frBaocaosolieu extends javax.swing.JFrame {
                 .addGroup(HoadontonkhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HoadontonkhoLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTONKHO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(15, 15, 15))
                     .addGroup(HoadontonkhoLayout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTungaytk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(99, 99, 99)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblDenngaytk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(163, 163, 163))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoadontonkhoLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
@@ -451,11 +497,11 @@ public class frBaocaosolieu extends javax.swing.JFrame {
             HoadontonkhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HoadontonkhoLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTONKHO, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(HoadontonkhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(lblTungaytk)
+                    .addComponent(lblDenngaytk))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(196, Short.MAX_VALUE))
@@ -465,26 +511,34 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
         HoadonXuat.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Hàng xuất");
+        lblHANGXUAT.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblHANGXUAT.setForeground(new java.awt.Color(0, 0, 0));
+        lblHANGXUAT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHANGXUAT.setText("Hàng xuất");
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Từ ngày :");
+        lblTungayx.setForeground(new java.awt.Color(0, 0, 0));
+        lblTungayx.setText("Từ ngày :");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Đến ngày:");
+        lblDenngayx.setForeground(new java.awt.Color(0, 0, 0));
+        lblDenngayx.setText("Đến ngày:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        TableHangxuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tên hàng", "Đơn vị tính", "Số lượng ", "Đơn giá"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(TableHangxuat);
 
         javax.swing.GroupLayout HoadonXuatLayout = new javax.swing.GroupLayout(HoadonXuat);
         HoadonXuat.setLayout(HoadonXuatLayout);
@@ -494,13 +548,13 @@ public class frBaocaosolieu extends javax.swing.JFrame {
                 .addGroup(HoadonXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HoadonXuatLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblHANGXUAT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(15, 15, 15))
                     .addGroup(HoadonXuatLayout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTungayx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(99, 99, 99)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblDenngayx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(153, 153, 153))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoadonXuatLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
@@ -511,11 +565,11 @@ public class frBaocaosolieu extends javax.swing.JFrame {
             HoadonXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HoadonXuatLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHANGXUAT, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(HoadonXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(lblTungayx)
+                    .addComponent(lblDenngayx))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(194, Short.MAX_VALUE))
@@ -541,6 +595,30 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBaocaoNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaocaoNhapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBaocaoNhapActionPerformed
+
+    private void btnBaocaoXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaocaoXuatActionPerformed
+        
+    }//GEN-LAST:event_btnBaocaoXuatActionPerformed
+
+    private void btnBaocaoTonkhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaocaoTonkhoActionPerformed
+        
+    }//GEN-LAST:event_btnBaocaoTonkhoActionPerformed
+
+    private void btnThoat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoat1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnThoat1ActionPerformed
+
+    private void btnThoat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoat2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnThoat2ActionPerformed
+
+    private void btnThoat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoat3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnThoat3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -583,22 +661,15 @@ public class frBaocaosolieu extends javax.swing.JFrame {
     private javax.swing.JPanel HoadonXuat;
     private javax.swing.JPanel Hoadontonkho;
     private javax.swing.JPanel Main;
+    private javax.swing.JTable TableHangnhap;
+    private javax.swing.JTable TableHangxuat;
+    private javax.swing.JTable TableTonkho;
     private javax.swing.JButton btnBaocaoNhap;
     private javax.swing.JButton btnBaocaoTonkho;
     private javax.swing.JButton btnBaocaoXuat;
     private javax.swing.JButton btnThoat1;
     private javax.swing.JButton btnThoat2;
     private javax.swing.JButton btnThoat3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -609,18 +680,25 @@ public class frBaocaosolieu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JLabel lblBaocaosolieu;
     private javax.swing.JLabel lblDenngay;
     private javax.swing.JLabel lblDenngay1;
     private javax.swing.JLabel lblDenngay2;
+    private javax.swing.JLabel lblDenngayn;
+    private javax.swing.JLabel lblDenngaytk;
+    private javax.swing.JLabel lblDenngayx;
+    private javax.swing.JLabel lblHANGNHAP;
+    private javax.swing.JLabel lblHANGXUAT;
     private javax.swing.JLabel lblHangnhap;
-    private javax.swing.JLabel lblHangnhap1;
     private javax.swing.JLabel lblHangtonkho;
+    private javax.swing.JLabel lblHangxuat;
+    private javax.swing.JLabel lblTONKHO;
     private javax.swing.JLabel lblTungay;
     private javax.swing.JLabel lblTungay1;
     private javax.swing.JLabel lblTungay2;
+    private javax.swing.JLabel lblTungayn;
+    private javax.swing.JLabel lblTungaytk;
+    private javax.swing.JLabel lblTungayx;
     private javax.swing.JTextField txtFromnhap;
     private javax.swing.JTextField txtFromtonkho;
     private javax.swing.JTextField txtFromxuat;

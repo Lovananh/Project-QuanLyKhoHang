@@ -184,9 +184,9 @@ public class frTrangChu extends javax.swing.JFrame {
         btnXuatkho.setText("Xuất Kho");
         btnXuatkho.setBorder(null);
         btnXuatkho.setBorderPainted(false);
-        btnXuatkho.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnXuatkhoMouseClicked(evt);
+        btnXuatkho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatkhoActionPerformed(evt);
             }
         });
 
@@ -579,14 +579,6 @@ public class frTrangChu extends javax.swing.JFrame {
         closeMenuBar();
     }//GEN-LAST:event_btnNhapkhoActionPerformed
 
-    private void btnXuatkhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatkhoMouseClicked
-        JPanel xuatkho = new PanelXuatkho();
-        panelMain.removeAll();
-        panelMain.add(xuatkho);
-        panelMain.validate();
-//        switchPanel(xuatkho);
-    }//GEN-LAST:event_btnXuatkhoMouseClicked
-
     private void switchPanel(JPanel panel) {
         getContentPane().removeAll(); // Xóa tất cả các thành phần hiện tại
         getContentPane().add(panel);  // Thêm panel mới vào
@@ -640,6 +632,13 @@ public class frTrangChu extends javax.swing.JFrame {
         frBaocaosolieu baocao = new frBaocaosolieu();
         baocao.setVisible(true);
     }//GEN-LAST:event_menuItemBaocaosolieuActionPerformed
+
+    private void btnXuatkhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatkhoActionPerformed
+        JPanel xuatkho = new PanelXuatkho();
+        panelMain.removeAll();
+        panelMain.add(xuatkho);
+        panelMain.validate();
+    }//GEN-LAST:event_btnXuatkhoActionPerformed
 //      kho = new PanelNhapkho();
 //          panelTRANGCHU.removeAll();
 //          panelTRANGCHU.add(kho);

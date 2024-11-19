@@ -4,11 +4,14 @@
  */
 package Interface;
 
+import Proccess.Hanghoa;
 import Proccess.Hangxuat;
-
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+
 
 public class PanelXuatkho extends javax.swing.JPanel {
 
@@ -132,13 +135,10 @@ public class PanelXuatkho extends javax.swing.JPanel {
 
         tableHangxuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "STT", "Mã hàng", "Mã nhân viên", "Số phiếu xuất ", "Ngày xuất ", "Mã thủ kho", "Số lượng", "Giá"
+                "STT", "Mã nhân viên", "Số phiếu xuất ", "Ngày xuất ", "Mã thủ kho", "Mã hàng", "Số lượng", "Giá"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -147,6 +147,12 @@ public class PanelXuatkho extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tableHangxuat.setShowHorizontalLines(false);
+        tableHangxuat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableHangxuatMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tableHangxuat);
@@ -283,7 +289,6 @@ public class PanelXuatkho extends javax.swing.JPanel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Thông báo lỗi khi không tải được dữ liệu vào bảng
             javax.swing.JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu vào bảng.");
         }
     }
@@ -293,6 +298,7 @@ public class PanelXuatkho extends javax.swing.JPanel {
         int sophieuxuat = Integer.parseInt(txtSophieuxuat.getText());
         java.sql.Date ngayxuat = java.sql.Date.valueOf(txtNgayxuat.getText());  // nam-thang-ngay 
         String mathukho = txtMathukho.getText();
+        
         String mahang = txtMahang.getText();
         int soluong = Integer.parseInt(txtSoluong.getText());
         double gia = Double.parseDouble(txtGia.getText());
@@ -312,9 +318,16 @@ public class PanelXuatkho extends javax.swing.JPanel {
                 hangxuat.setSophieuxuat(sophieuxuat);
                 hangxuat.setNgayxuat(ngayxuat);
                 hangxuat.setMathukho(mathukho);
-                hangxuat.setMahang(mahang);
-                hangxuat.setSoluong(soluong);
-                hangxuat.setGia(gia);
+                
+//                hangxuat.setMahang(mahang);
+//                hangxuat.setSoluong(soluong);
+//                hangxuat.setGia(gia);
+
+                Hanghoa hanghoa = new Hanghoa();
+                hanghoa.setMahh(mahang);
+                hanghoa.setSoluong(soluong);
+                hanghoa.setGia(gia);
+                hangxuat.getDSHanghoa().add(hanghoa);
 
                 if (hangxuat.InsertHangxuat(hangxuat)) {
                     loadDataToTable();
@@ -342,7 +355,7 @@ public class PanelXuatkho extends javax.swing.JPanel {
         if (row != -1) {
             String manv = txtManv.getText();
             int sophieuxuat = Integer.parseInt(txtSophieuxuat.getText());
-            java.sql.Date ngayxuat = java.sql.Date.valueOf(txtNgayxuat.getText()); // Định dạng yyyy-MM-dd
+            Date ngayxuat = java.sql.Date.valueOf(txtNgayxuat.getText()); // Định dạng yyyy-MM-dd
             String mathukho = txtMathukho.getText();
             String mahang = txtMahang.getText();
             int soluong = Integer.parseInt(txtSoluong.getText());
@@ -357,7 +370,7 @@ public class PanelXuatkho extends javax.swing.JPanel {
                     // Thiết lập giá trị
                     hangxuat.setManv(manv);
                     hangxuat.setSophieuxuat(sophieuxuat);
-                    hangxuat.setNgayxuat(ngayxuat);
+                    hangxuat.setNgayxuat((java.sql.Date) ngayxuat);
                     hangxuat.setMathukho(mathukho);
                     hangxuat.setMahang(mahang);
                     hangxuat.setSoluong(soluong);
@@ -410,12 +423,56 @@ public class PanelXuatkho extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        // TODO add your handling code here:
+        this.disable();
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnInphieuxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInphieuxuatActionPerformed
-        // TODO add your handling code here:
+     /*   try {
+            // Lấy thông tin từ các trường dữ liệu trên giao diện
+            Hangxuat hangxuat = new Hangxuat();
+            hangxuat.setManv(txtManv.getText());
+            hangxuat.setSophieuxuat(Integer.parseInt(txtSophieuxuat.getText()));
+            hangxuat.setNgayxuat((java.sql.Date) new SimpleDateFormat("yyyy-MM-dd").parse(txtNgayxuat.getText()));
+            hangxuat.setMathukho(txtMathukho.getText());
+
+            // Thêm dữ liệu vào cơ sở dữ liệu
+            boolean isInserted = hangxuatDAO.InsertHangxuat(hangxuat);
+            if (isInserted) {
+                // Nếu thành công, hiển thị thông báo
+                javax.swing.JOptionPane.showMessageDialog(null, "Thêm phiếu xuất thành công!");
+
+                // Làm mới bảng hiển thị dữ liệu
+//                refreshHangxuatTable();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(null, "Thêm phiếu xuất không thành công!");
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Lỗi: " + e.getMessage());
+        } */
     }//GEN-LAST:event_btnInphieuxuatActionPerformed
+
+    private void tableHangxuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHangxuatMouseClicked
+        int selectedRow = tableHangxuat.getSelectedRow(); // Lấy chỉ số dòng được chọn
+
+        if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn hay không
+            String manv = tableHangxuat.getValueAt(selectedRow, 1).toString();
+            String sophieuxuat = tableHangxuat.getValueAt(selectedRow, 2).toString();
+            String ngayxuat = tableHangxuat.getValueAt(selectedRow, 3).toString();
+            String mathukho = tableHangxuat.getValueAt(selectedRow, 4).toString();
+            String mahang = tableHangxuat.getValueAt(selectedRow, 5).toString();
+            String soluongxuat = tableHangxuat.getValueAt(selectedRow, 6).toString();
+            String Gia = tableHangxuat.getValueAt(selectedRow, 7).toString();
+
+            // Set các giá trị cho các JTextField
+            txtManv.setText(manv);
+            txtSophieuxuat.setText(sophieuxuat);
+            txtNgayxuat.setText(ngayxuat);
+            txtMathukho.setText(mathukho);
+            txtMahang.setText(mahang);
+            txtSoluong.setText(soluongxuat);
+            txtGia.setText(Gia);
+        }
+    }//GEN-LAST:event_tableHangxuatMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
