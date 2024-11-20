@@ -126,7 +126,7 @@ public class Hangnhap {
         Hangnhap hangnhap = null;
 
         try (Connection conn = cn.connectSQL(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, soPhieunhap);  
+            ps.setInt(1, soPhieunhap);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     hangnhap = new Hangnhap();
@@ -148,14 +148,6 @@ public class Hangnhap {
     public boolean InsertHangnhap(Hangnhap obj) throws SQLException {
         try (Connection conn = cn.connectSQL()) {
             conn.setAutoCommit(false); // Bắt đầu một transaction
-
-            // Thêm thông tin hàng vào bảng Hang
-//            String sqlHang = "INSERT INTO Hanghoa (Mahang) VALUES (?, ?)";
-//            try (PreparedStatement psHang = conn.prepareStatement(sqlHang)) {
-//                psHang.setString(1, obj.getmahang());
-//                psHang.executeUpdate();
-//            }
-
             // Thêm vào bảng Hangnhap
             String sqlHangnhap = "INSERT INTO Hangnhap (Makho, Sophieunhap, Ngaynhap , Mathukho) VALUES (?,?,?,?)";
             try (PreparedStatement psHangnhap = conn.prepareStatement(sqlHangnhap)) {
@@ -190,24 +182,34 @@ public class Hangnhap {
         try (Connection conn = cn.connectSQL()) {
             conn.setAutoCommit(false); // Bắt đầu một transaction
 
-            // Cập nhật thông tin trong bảng Hang
-            String sqlHang = "UPDATE Hanghoa SET Dongia = ? WHERE Mahang = ?";
-            try (PreparedStatement psHang = conn.prepareStatement(sqlHang)) {
-                psHang.setDouble(1, obj.getdongia());
-                psHang.setString(2, obj.getmahang());
-                psHang.executeUpdate();
+           
+            String sqlHangnhap = "UPDATE Hangnhap SET Makho = ?, Ngaynhap = ?, Mathukho = ? WHERE Sophieunhap = ?";
+            try (PreparedStatement psHangnhap = conn.prepareStatement(sqlHangnhap)) {
+                psHangnhap.setString(1, obj.getmakho());
+                psHangnhap.setDate(2, new java.sql.Date(obj.getngaynhap().getTime()));
+                psHangnhap.setString(3, obj.getmathukho());
+                psHangnhap.setInt(4, obj.getsophieun()); 
+                int updatedRows = psHangnhap.executeUpdate();
+                if (updatedRows == 0) {
+                    // Nếu không có dòng nào được cập nhật, có thể ném lỗi hoặc xử lý khác
+                    throw new SQLException("Không tìm thấy hàng nhập với mã số phiếu nhập " + obj.getsophieun());
+                }
             }
 
             // Cập nhật thông tin trong bảng Phieunhap
-            String sqlPhieunhap = "UPDATE Phieunhap SET Soluongtn = ?, Soluongxn = ?, Ngaynhap = ? WHERE Mahang = ?";
+            String sqlPhieunhap = "UPDATE Phieunhap SET Soluongtn = ?, Soluongxn = ?, Dongia = ? WHERE Mahang = ? AND Sophieunhap = ?";
             try (PreparedStatement psPhieunhap = conn.prepareStatement(sqlPhieunhap)) {
                 psPhieunhap.setInt(1, obj.getsoluongtn());
                 psPhieunhap.setInt(2, obj.getsoluongxn());
-                psPhieunhap.setDate(3, new java.sql.Date(obj.getngaynhap().getTime()));
+                psPhieunhap.setDouble(3,obj.getdongia());
                 psPhieunhap.setString(4, obj.getmahang());
-                psPhieunhap.executeUpdate();
+                psPhieunhap.setInt(5, obj.getsophieun());
+                int updatedRows = psPhieunhap.executeUpdate();
+                if (updatedRows == 0) {
+                    // Nếu không có dòng nào được cập nhật, có thể ném lỗi hoặc xử lý khác
+                    throw new SQLException("Không tìm thấy phiếu nhập với mã hàng và số phiếu nhập " + obj.getmahang() + ", " + obj.getsophieun());
+                }
             }
-
             conn.commit(); // Commit transaction
             return true;
         } catch (SQLException e) {
@@ -217,28 +219,21 @@ public class Hangnhap {
     }
 
     // Xóa một dòng khỏi bảng Hangnhap
-    public boolean DeleteHangnhap(String mahang) throws SQLException {
+    public boolean DeleteHangnhap(int sophieunhap) throws SQLException {
         try (Connection conn = cn.connectSQL()) {
             conn.setAutoCommit(false); // Bắt đầu một transaction
 
-            // Xóa thông tin hàng từ bảng Hang
-            String sqlHang = "DELETE FROM Hang WHERE Mahang = ?";
-            try (PreparedStatement psHang = conn.prepareStatement(sqlHang)) {
-                psHang.setString(1, mahang);
-                psHang.executeUpdate();
-            }
-
             // Xóa thông tin phiếu nhập từ bảng Phieunhap
-            String sqlPhieunhap = "DELETE FROM Phieunhap WHERE Mahang = ?";
+            String sqlPhieunhap = "DELETE FROM Phieunhap WHERE Sophieunhap = ?";
             try (PreparedStatement psPhieunhap = conn.prepareStatement(sqlPhieunhap)) {
-                psPhieunhap.setString(1, mahang);
+                psPhieunhap.setInt(1, sophieunhap);
                 psPhieunhap.executeUpdate();
             }
 
             // Xóa thông tin hàng nhập từ bảng Hangnhap
-            String sqlHangnhap = "DELETE FROM Hangnhap WHERE Mahang = ?";
+            String sqlHangnhap = "DELETE FROM Hangnhap WHERE Sophieunhap = ?";
             try (PreparedStatement psHangnhap = conn.prepareStatement(sqlHangnhap)) {
-                psHangnhap.setString(1, mahang);
+                psHangnhap.setInt(1, sophieunhap);
                 psHangnhap.executeUpdate();
             }
 

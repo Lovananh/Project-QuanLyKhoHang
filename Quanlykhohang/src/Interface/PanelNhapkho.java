@@ -285,8 +285,8 @@ public class PanelNhapkho extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -424,10 +424,10 @@ public class PanelNhapkho extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int row = tableHangnhap.getSelectedRow();
         if (row != -1) {
-            String mahang = tableHangnhap.getValueAt(row, 1).toString();
+            int sophieunhap = Integer.parseInt(tableHangnhap.getValueAt(row, 3).toString());
             try {
                 Hangnhap hn = new Hangnhap();
-                if (hn.DeleteHangnhap(mahang)) {
+                if (hn.DeleteHangnhap(sophieunhap)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "Xóa thành công!");
                     javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableHangnhap.getModel();
                     model.removeRow(row);

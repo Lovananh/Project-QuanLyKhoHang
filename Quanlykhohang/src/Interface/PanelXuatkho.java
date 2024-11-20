@@ -26,13 +26,6 @@ public class PanelXuatkho extends javax.swing.JPanel {
     private void initComponents() {
 
         jSlider1 = new javax.swing.JSlider();
-        PanelXUATPHIEU = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        lblSophieux = new javax.swing.JLabel();
-        lblSoluongx = new javax.swing.JLabel();
-        lblMAHANG = new javax.swing.JLabel();
         Panelhangxuat = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableHangxuat = new javax.swing.JTable();
@@ -58,89 +51,15 @@ public class PanelXuatkho extends javax.swing.JPanel {
         btnThoat = new javax.swing.JButton();
         btnInphieuxuat = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
+        PanelXUATPHIEU = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        lblSophieux = new javax.swing.JLabel();
+        lblSoluongx = new javax.swing.JLabel();
+        lblMAHANG = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Phiếu xuất");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(468, 468, 468))
-        );
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.setPreferredSize(new java.awt.Dimension(624, 440));
-
-        lblSophieux.setForeground(new java.awt.Color(0, 0, 0));
-        lblSophieux.setText("Số phiếu xuất :");
-
-        lblSoluongx.setForeground(new java.awt.Color(0, 0, 0));
-        lblSoluongx.setText("Số lượng xuất :");
-
-        lblMAHANG.setForeground(new java.awt.Color(0, 0, 0));
-        lblMAHANG.setText("Mã hàng :");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMAHANG)
-                    .addComponent(lblSophieux)
-                    .addComponent(lblSoluongx))
-                .addGap(182, 182, 182))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(lblMAHANG)
-                .addGap(18, 18, 18)
-                .addComponent(lblSophieux)
-                .addGap(28, 28, 28)
-                .addComponent(lblSoluongx)
-                .addGap(120, 120, 120))
-        );
-
-        javax.swing.GroupLayout PanelXUATPHIEULayout = new javax.swing.GroupLayout(PanelXUATPHIEU);
-        PanelXUATPHIEU.setLayout(PanelXUATPHIEULayout);
-        PanelXUATPHIEULayout.setHorizontalGroup(
-            PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelXUATPHIEULayout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129))
-            .addGroup(PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        PanelXUATPHIEULayout.setVerticalGroup(
-            PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelXUATPHIEULayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                .addGap(166, 166, 166))
-            .addGroup(PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        add(PanelXUATPHIEU, "card2");
 
         tableHangxuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -332,7 +251,7 @@ public class PanelXuatkho extends javax.swing.JPanel {
                     .addGroup(PanelhangxuatLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PanelhangxuatLayout.setVerticalGroup(
@@ -349,6 +268,87 @@ public class PanelXuatkho extends javax.swing.JPanel {
         );
 
         add(Panelhangxuat, "card3");
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Phiếu xuất");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(468, 468, 468))
+        );
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel6.setPreferredSize(new java.awt.Dimension(624, 440));
+
+        lblSophieux.setForeground(new java.awt.Color(0, 0, 0));
+        lblSophieux.setText("Số phiếu xuất :");
+
+        lblSoluongx.setForeground(new java.awt.Color(0, 0, 0));
+        lblSoluongx.setText("Số lượng xuất :");
+
+        lblMAHANG.setForeground(new java.awt.Color(0, 0, 0));
+        lblMAHANG.setText("Mã hàng :");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMAHANG)
+                    .addComponent(lblSophieux)
+                    .addComponent(lblSoluongx))
+                .addGap(182, 182, 182))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(lblMAHANG)
+                .addGap(18, 18, 18)
+                .addComponent(lblSophieux)
+                .addGap(28, 28, 28)
+                .addComponent(lblSoluongx)
+                .addGap(120, 120, 120))
+        );
+
+        javax.swing.GroupLayout PanelXUATPHIEULayout = new javax.swing.GroupLayout(PanelXUATPHIEU);
+        PanelXUATPHIEU.setLayout(PanelXUATPHIEULayout);
+        PanelXUATPHIEULayout.setHorizontalGroup(
+            PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelXUATPHIEULayout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(129, 129, 129))
+            .addGroup(PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelXUATPHIEULayout.setVerticalGroup(
+            PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelXUATPHIEULayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addGap(166, 166, 166))
+            .addGroup(PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        add(PanelXUATPHIEU, "card2");
     }// </editor-fold>//GEN-END:initComponents
     private void loadDataToTable() {
         try {
