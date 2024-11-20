@@ -572,9 +572,9 @@ public class frTrangChu extends javax.swing.JFrame {
     //da thanh cong
     private void btnNhapkhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapkhoActionPerformed
 
-        JPanel phieunhap = new PanelPhieunhap();
+        JPanel nhapkho = new PanelNhapkho();
         panelMain.removeAll();
-        panelMain.add(phieunhap);
+        panelMain.add(nhapkho);
         panelMain.validate();
         closeMenuBar();
     }//GEN-LAST:event_btnNhapkhoActionPerformed

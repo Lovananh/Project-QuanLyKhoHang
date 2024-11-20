@@ -14,6 +14,15 @@ public class Hanghoa {
     private String Donvt;
     private String Tinhtrang;
 
+//    public Hanghoa(String Mahh, String Tenhh, int Soluong, double Gia, String Donvt, String Tinhtrang) {
+//        this.Mahh = Mahh;
+//        this.Tenhh = Tenhh;
+//        this.Soluong = Soluong;
+//        this.Gia = Gia;
+//        this.Donvt = Donvt;
+//        this.Tinhtrang = Tinhtrang;
+//    }
+
     public void setMahh(String Mahh) {
         this.Mahh = Mahh;
     }

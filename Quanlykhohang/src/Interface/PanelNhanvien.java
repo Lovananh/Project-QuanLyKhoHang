@@ -499,11 +499,12 @@ public class PanelNhanvien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-       this.disable();
+//       this.dispose();
+      
        frTrangChu menu = new frTrangChu();
         menu.setVisible(true);
-//        JPanel nv = new PanelNhanvien();
-//        nv.setVisible(false);
+        
+
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed

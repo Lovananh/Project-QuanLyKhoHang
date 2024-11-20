@@ -18,7 +18,7 @@ public class Hangxuat {
     private Date Ngayxuat;
     private String Mathukho;
     private String Mahang;
-    private int Soluong;
+    private int Soluongxuat;
     private double Gia;
     private List<Hanghoa> dsHanghoa;
 
@@ -71,13 +71,13 @@ public class Hangxuat {
         return Mahang;
     }
 
-    public void setSoluong(int Soluong) {
-        this.Soluong = Soluong;
+    public void setSoluongxuat(int Soluongxuat) {
+        this.Soluongxuat = Soluongxuat;
     }
 
-    public int getSoluong() {
+    public int getSoluongxuat() {
 
-        return Soluong;
+        return Soluongxuat;
     }
 
     public void setGia(double Gia) {
@@ -120,7 +120,7 @@ public class Hangxuat {
                 hx.setNgayxuat(rs.getDate("Ngayxuat"));
                 hx.setMathukho(rs.getString("Mathukho"));
                 hx.setMahang(rs.getString("Mahang"));
-                hx.setSoluong(rs.getInt("Soluongxuat"));
+                hx.setSoluongxuat(rs.getInt("Soluongxuat"));
                 hx.setGia(rs.getDouble("Gia"));
                 dshangxuat.add(hx);
             }
@@ -148,7 +148,7 @@ public class Hangxuat {
                     hangxuat.setNgayxuat(rs.getDate("Ngayxuat"));
                     hangxuat.setMathukho(rs.getString("Mathukho"));
                     hangxuat.setMahang(rs.getString("Mahang"));
-                    hangxuat.setSoluong(rs.getInt("Soluongxuat"));
+                    hangxuat.setSoluongxuat(rs.getInt("Soluongxuat"));
                     hangxuat.setGia(rs.getDouble("Gia"));
                 }
             }
@@ -160,13 +160,12 @@ public class Hangxuat {
     public boolean InsertHangxuat(Hangxuat obj) throws SQLException {
         if (obj == null) {
             System.out.println("Dữ liệu hàng xuất không hợp lệ.");
-            return false; 
+            return false;
         }
         String sqlHangxuat = "INSERT INTO Hangxuat (Manv, Sophieuxuat, Ngayxuat, Mathukho) VALUES (?, ?, ?, ?)";
-        String sqlphieuxuat = "INSERT INTO Phieuxuat (Mahang, Sophieuxuat, Soluongxuat) VALUES (?, ?, ?, ?)";
+        String sqlphieuxuat = "INSERT INTO Phieuxuat (Mahang, Sophieuxuat, Soluongxuat) VALUES (?, ?, ?)";
 
         try (Connection conn = cn.connectSQL()) {
-            // Bắt đầu một transaction
             conn.setAutoCommit(false);  // Tắt chế độ tự động commit
 
             try (PreparedStatement pshangxuat = conn.prepareStatement(sqlHangxuat); PreparedStatement psphieuxuat = conn.prepareStatement(sqlphieuxuat)) {
@@ -178,17 +177,17 @@ public class Hangxuat {
                 pshangxuat.setString(4, obj.getMathukho());
 
                 // Thiết lập các tham số cho câu lệnh INSERT vào bảng Phieuxuat
-                psphieuxuat.setString(1, obj.getMahang());
-                psphieuxuat.setInt(2, obj.getSophieuxuat());
-                psphieuxuat.setInt(3, obj.getSoluong());
+                for (Hanghoa hanghoa : obj.getDSHanghoa()) {
+                    psphieuxuat.setString(1, hanghoa.getMahh());
+                    psphieuxuat.setInt(2, obj.getSophieuxuat());
+                    psphieuxuat.setInt(3, obj.getSoluongxuat());
+                    psphieuxuat.addBatch();
+                }
 
-                // Thực thi câu lệnh chèn vào bảng Hangxuat
                 int result1 = pshangxuat.executeUpdate();
-                // Thực thi câu lệnh chèn vào bảng Phieuxuat
-                int result2 = psphieuxuat.executeUpdate();
+                int[] result2 = psphieuxuat.executeBatch();
 
-                // Nếu cả hai câu lệnh đều thành công, commit transaction
-                if (result1 > 0 && result2 > 0) {
+                if (result1 > 0 && result2.length > 0) {
                     conn.commit(); // Commit transaction
                     return true;
                 } else {
@@ -208,28 +207,56 @@ public class Hangxuat {
             System.out.println("Dữ liệu hàng xuất không hợp lệ.");
             return false;
         }
-        String sqlhangxuat = "UPDATE Hangxuat SET Sophieuxuat = ?, Ngayxuat = ?, Mathukho = ? WHERE Manv = ?";
+        String sqlhangxuat = "UPDATE Hangxuat SET Ngayxuat = ?, Mathukho = ? WHERE Sophieuxuat = ? AND Manv = ?";
         try (Connection conn = cn.connectSQL()) {
 
             PreparedStatement pshangxuat = conn.prepareStatement(sqlhangxuat);
 
             // Cập nhật bảng Hangxuat
-            pshangxuat.setInt(1, obj.getSophieuxuat());
-            pshangxuat.setDate(2, new java.sql.Date(obj.getNgayxuat().getTime()));
-            pshangxuat.setString(3, obj.getMathukho());
+            pshangxuat.setDate(1, new java.sql.Date(obj.getNgayxuat().getTime()));
+            pshangxuat.setString(2, obj.getMathukho());
+            pshangxuat.setInt(3, obj.getSophieuxuat());
             pshangxuat.setString(4, obj.getManv());
 
             return pshangxuat.executeUpdate() > 0;
-
         }
     }
 
 // xoa 1 dong
     public boolean DeleteHangxuat(int sophieuxuat) throws SQLException {
-        String sql = "DELETE FROM Hangxuat WHERE Sophieuxuat = ?";
-        try (Connection conn = cn.connectSQL(); PreparedStatement stm = conn.prepareStatement(sql)) {
-            stm.setInt(1, sophieuxuat);
-            return stm.executeUpdate() > 0;
+        // Xóa dữ liệu trong bảng Phieuxuat trước
+        String deletePhieuxuat = "DELETE FROM Phieuxuat WHERE Sophieuxuat = ?";
+        String deleteHangxuat = "DELETE FROM Hangxuat WHERE Sophieuxuat = ?";
+
+        try (Connection conn = cn.connectSQL()) {
+            // Bắt đầu một giao dịch (transaction)
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement stmPhieuxuat = conn.prepareStatement(deletePhieuxuat); PreparedStatement stmHangxuat = conn.prepareStatement(deleteHangxuat)) {
+
+                // Xóa dữ liệu trong Phieuxuat
+                stmPhieuxuat.setInt(1, sophieuxuat);
+                stmPhieuxuat.executeUpdate();
+
+                // Xóa dữ liệu trong Hangxuat
+                stmHangxuat.setInt(1, sophieuxuat);
+                int rowsDeleted = stmHangxuat.executeUpdate();
+
+                // Nếu có ít nhất 1 dòng bị xóa từ Hangxuat, commit giao dịch
+                if (rowsDeleted > 0) {
+                    conn.commit();
+                    return true;
+                } else {
+                    conn.rollback();
+                    return false;
+                }
+            } catch (SQLException e) {
+                conn.rollback(); // rollback nếu có lỗi xảy ra
+                throw e; // ném lại lỗi
+            } finally {
+                conn.setAutoCommit(true); // Đảm bảo giao dịch trở về trạng thái mặc định
+            }
         }
     }
+
 }

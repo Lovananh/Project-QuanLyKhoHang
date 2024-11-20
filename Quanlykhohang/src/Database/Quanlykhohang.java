@@ -4,6 +4,7 @@
  */
 package Database;
 
+import Interface.frDangnhap;
 import Interface.frTrangChu;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,8 +12,12 @@ import java.sql.SQLException;
 public class Quanlykhohang {
 
     public static void main(String[] args) {
-        frTrangChu trangchu = new frTrangChu();
-        trangchu.setVisible(true);
+//        frTrangChu trangchu = new frTrangChu();
+//        trangchu.setVisible(true);
+        new frDangnhap().setVisible(true);
+        
+        
+        
         Connect dbConnect = new Connect();
         try {
             Connection conn = dbConnect.connectSQL();
