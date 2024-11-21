@@ -116,7 +116,6 @@ public class frTrangChu extends javax.swing.JFrame {
         mnItemHanghoa = new javax.swing.JMenuItem();
         menuitemTonkho = new javax.swing.JMenuItem();
         menuItemBaocaosolieu = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         mnNhanvien = new javax.swing.JMenu();
         menuItemNhanvien = new javax.swing.JMenuItem();
 
@@ -520,9 +519,6 @@ public class frTrangChu extends javax.swing.JFrame {
         });
         Trangchu.add(menuItemBaocaosolieu);
 
-        jMenuItem1.setText("jMenuItem1");
-        Trangchu.add(jMenuItem1);
-
         jMenuBar1.add(Trangchu);
 
         mnNhanvien.setText("Nhân viên");
@@ -707,7 +703,6 @@ public class frTrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblMenu;

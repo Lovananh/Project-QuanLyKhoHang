@@ -170,13 +170,13 @@ public class Hangxuat {
 
             try (PreparedStatement pshangxuat = conn.prepareStatement(sqlHangxuat); PreparedStatement psphieuxuat = conn.prepareStatement(sqlphieuxuat)) {
 
-                // Thiết lập các tham số cho câu lệnh INSERT vào bảng Hangxuat
+                // Thiết lập các tham số
                 pshangxuat.setString(1, obj.getManv());
                 pshangxuat.setInt(2, obj.getSophieuxuat());
                 pshangxuat.setDate(3, new java.sql.Date(obj.getNgayxuat().getTime()));
                 pshangxuat.setString(4, obj.getMathukho());
 
-                // Thiết lập các tham số cho câu lệnh INSERT vào bảng Phieuxuat
+                // Thiết lập các tham số 
                 for (Hanghoa hanghoa : obj.getDSHanghoa()) {
                     psphieuxuat.setString(1, hanghoa.getMahh());
                     psphieuxuat.setInt(2, obj.getSophieuxuat());
