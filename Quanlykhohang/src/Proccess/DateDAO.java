@@ -3,25 +3,25 @@ package Proccess;
 import Database.Connect;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date; // Sử dụng java.util.Date
+import java.util.Date;
 import java.util.List;
 
 public class DateDAO {
 
     public class Hangxuat {
 
-        private int id;
+        private String sophieuxuat ;
         private String tenhang;
         private int soluong;
         private Date ngayxuat;
 
         // Getter và Setter
-        public int getId() {
-            return id;
+        public String getSophieuxuat() {
+            return sophieuxuat;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setSophieuxuat(String sophieuxuat) {
+            this.sophieuxuat = sophieuxuat;
         }
 
         public String getTenhang() {
@@ -48,22 +48,20 @@ public class DateDAO {
             this.ngayxuat = ngayxuat;
         }
     }
-
     
     public class Hangnhap {
-
-        private int id;
+        private String sophieunhap ;
         private String tenhang;
         private int soluong;
         private Date ngaynhap;
 
         // Getter và Setter
-        public int getId() {
-            return id;
+         public String getSophieunhap() {
+            return sophieunhap;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setSophieunhap(String sophieunhap) {
+            this.sophieunhap = sophieunhap;
         }
 
         public String getTenhang() {
@@ -90,59 +88,91 @@ public class DateDAO {
             this.ngaynhap = ngaynhap;
         }
     }
+
+    
     Connect cn = new Connect();
 
-    public List<Hangnhap> getHangnhapBydate(Date fromnhap, Date tonhap) throws SQLException {
+    // Phương thức lấy dữ liệu hàng nhập theo khoảng ngày
+    public List<Hangnhap> getHangnhapByDate(Date fromDate, Date toDate) throws SQLException {
         List<Hangnhap> hangnhapList = new ArrayList<>();
         String sql = "SELECT * FROM Hangnhap WHERE Ngaynhap BETWEEN ? AND ?";
         try (Connection conn = cn.connectSQL(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            // Thiết lập tham số cho câu truy vấn
-            ps.setDate(1, new java.sql.Date(fromnhap.getTime()));
-            ps.setDate(2, new java.sql.Date(tonhap.getTime()));
+            // Thiết lập tham số
+            ps.setDate(1, new java.sql.Date(fromDate.getTime()));
+            ps.setDate(2, new java.sql.Date(toDate.getTime()));
 
-            // Thực thi câu truy vấn
+            // Thực thi truy vấn
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Hangnhap hang = new Hangnhap();
-                hang.setId(rs.getInt("Id"));
+                hang.setTenhang(rs.getString("Sophieunhap"));
                 hang.setTenhang(rs.getString("Tenhang"));
                 hang.setSoluong(rs.getInt("Soluong"));
                 hang.setNgaynhap(rs.getDate("Ngaynhap"));
                 hangnhapList.add(hang);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return hangnhapList;
     }
 
-    public List<Hangxuat> getHangxuatByDateRange(Date fromDate, Date toDate) {
+    // Phương thức lấy dữ liệu hàng xuất theo khoảng ngày
+    public List<Hangxuat> getHangxuatByDate(Date fromDate, Date toDate) throws SQLException {
         List<Hangxuat> hangxuatList = new ArrayList<>();
         String sql = "SELECT * FROM Hangxuat WHERE Ngayxuat BETWEEN ? AND ?";
-
         try (Connection conn = cn.connectSQL(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            // Thiết lập tham số cho câu truy vấn
+            // Thiết lập tham số
             ps.setDate(1, new java.sql.Date(fromDate.getTime()));
             ps.setDate(2, new java.sql.Date(toDate.getTime()));
 
-            // Thực thi câu truy vấn
+            // Thực thi truy vấn
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Hangxuat hang = new Hangxuat();
-                hang.setId(rs.getInt("Id"));
+                hang.setTenhang(rs.getString("Sophieuxuat"));
                 hang.setTenhang(rs.getString("Tenhang"));
                 hang.setSoluong(rs.getInt("Soluong"));
                 hang.setNgayxuat(rs.getDate("Ngayxuat"));
                 hangxuatList.add(hang);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return hangxuatList;
     }
 
-    
+    // Phương thức lấy toàn bộ dữ liệu hàng nhập
+    public List<Hangnhap> getAllHangnhap() throws SQLException {
+        List<Hangnhap> hangnhapList = new ArrayList<>();
+        String sql = "SELECT * FROM Hangnhap";
+        try (Connection conn = cn.connectSQL(); Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Hangnhap hang = new Hangnhap();
+                hang.setTenhang(rs.getString("Sophieunhap"));
+                hang.setTenhang(rs.getString("Tenhang"));
+                hang.setSoluong(rs.getInt("Soluong"));
+                hang.setNgaynhap(rs.getDate("Ngaynhap"));
+                hangnhapList.add(hang);
+            }
+        }
+        return hangnhapList;
+    }
 
+    // Phương thức lấy toàn bộ dữ liệu hàng xuất
+    public List<Hangxuat> getAllHangxuat() throws SQLException {
+        List<Hangxuat> hangxuatList = new ArrayList<>();
+        String sql = "SELECT * FROM Hangxuat";
+        try (Connection conn = cn.connectSQL(); Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Hangxuat hang = new Hangxuat();
+                hang.setTenhang(rs.getString("Sophieuxuat"));
+                hang.setTenhang(rs.getString("Tenhang"));
+                hang.setSoluong(rs.getInt("Soluong"));
+                hang.setNgayxuat(rs.getDate("Ngayxuat"));
+                hangxuatList.add(hang);
+            }
+        }
+        return hangxuatList;
+    }
 }

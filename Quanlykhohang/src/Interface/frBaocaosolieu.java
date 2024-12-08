@@ -6,11 +6,16 @@ package Interface;
 
 import Proccess.DateDAO;
 import Proccess.Hangnhap;
+import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class frBaocaosolieu extends javax.swing.JFrame {
 
@@ -593,48 +598,97 @@ public class frBaocaosolieu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateTableNhap(List<Hangnhap> hangnhapList) {
-//        DateDAO dateModel = new DateDAO();
-//        List<DateDAO> list = dateModel.getHangnhapBydate();
-        DefaultTableModel model = (DefaultTableModel) TableHangnhap.getModel();
-        model.setRowCount(0); // Xóa dữ liệu cũ
 
-        for (Hangnhap hang : hangnhapList) {
-            model.addRow(new Object[]{ //                hang.getId(),
-            //                hang.getTenhang(),
-            //                hang.getSoluong(),
-            //                new SimpleDateFormat("yyyy-MM-dd").format(hang.getNgaynhap())
-            });
-        }
-    }
     private void btnBaocaoNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaocaoNhapActionPerformed
-//        try {
-//            // Sử dụng SimpleDateFormat để chuyển đổi ngày
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            java.util.Date fromDate = sdf.parse(txtFromnhap.getText());
-//            java.util.Date toDate = sdf.parse(txtTonhap.getText());
-//
-//            if (fromDate.after(toDate)) {
-//                JOptionPane.showMessageDialog(this, "Ngày bắt đầu phải trước ngày kết thúc");
-//                return;
-//            }
-//
-//            DateDAO dateDAO = new DateDAO();
-//            List<DateDAO.Hangnhap> hangnhapList = dateDAO.getHangnhapBydate(fromDate, toDate);
-//
-//            // Hiển thị dữ liệu lên bảng
-//            updateTableNhap(hangnhapList);
-//
-//        } catch (ParseException e) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày đúng định dạng (yyyy-MM-dd).");
-//        }
-//        
+        try {
+            // Lấy ngày từ TextField
+            String fromDateStr = txtFromnhap.getText();
+            String toDateStr = txtTonhap.getText();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fromDate = dateFormat.parse(fromDateStr);
+            Date toDate = dateFormat.parse(toDateStr);
+
+            // Lấy dữ liệu hàng nhập từ DAO
+            DateDAO dateDAO = new DateDAO();
+            List<DateDAO.Hangnhap> hangnhapList = dateDAO.getHangnhapByDate(fromDate, toDate);
+
+            // Tạo workbook Excel
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Hang Nhap");
+
+            // Tạo tiêu đề
+            XSSFRow headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Số phiếu nhập");
+            headerRow.createCell(1).setCellValue("Tên Hàng");
+            headerRow.createCell(2).setCellValue("Số Lượng");
+            headerRow.createCell(3).setCellValue("Ngày Nhập");
+
+            // Duyệt danh sách và thêm vào bảng
+            int rowCount = 1;
+            for (DateDAO.Hangnhap hang : hangnhapList) {
+                XSSFRow row = sheet.createRow(rowCount++);
+                row.createCell(0).setCellValue(hang.getSophieunhap());
+                row.createCell(1).setCellValue(hang.getTenhang());
+                row.createCell(2).setCellValue(hang.getSoluong());
+                row.createCell(3).setCellValue(hang.getNgaynhap().toString());
+            }
+
+            // Ghi dữ liệu vào file Excel
+            String excelPath = "D:/Baocao_Hangnhap.xlsx";
+            FileOutputStream fileOut = new FileOutputStream(excelPath);
+            workbook.write(fileOut);
+            fileOut.close();
+
+            JOptionPane.showMessageDialog(this, "Báo cáo đã được xuất thành công ra file Excel: " + excelPath);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi xuất báo cáo: " + ex.getMessage());
+        }
 
         Hoadon.setVisible(true);
     }//GEN-LAST:event_btnBaocaoNhapActionPerformed
 
     private void btnBaocaoXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaocaoXuatActionPerformed
+        try {
+            String fromDateStr = txtFromxuat.getText();
+            String toDateStr = txtToxuat.getText();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fromDate = dateFormat.parse(fromDateStr);
+            Date toDate = dateFormat.parse(toDateStr);
 
+            DateDAO dateDAO = new DateDAO();
+            List<DateDAO.Hangxuat> hangxuatList = dateDAO.getHangxuatByDate(fromDate, toDate);
+
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Hang Xuat");
+
+            XSSFRow headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Số phiếu xuất");
+            headerRow.createCell(1).setCellValue("Tên Hàng");
+            headerRow.createCell(2).setCellValue("Số Lượng");
+            headerRow.createCell(3).setCellValue("Ngày Xuất");
+
+            int rowCount = 1;
+            for (DateDAO.Hangxuat hang : hangxuatList) {
+                XSSFRow row = sheet.createRow(rowCount++);
+                row.createCell(0).setCellValue(hang.getSophieuxuat());
+                row.createCell(1).setCellValue(hang.getTenhang());
+                row.createCell(2).setCellValue(hang.getSoluong());
+                row.createCell(3).setCellValue(hang.getNgayxuat().toString());
+            }
+
+            String excelPath = "D:/Baocao_Hangxuat.xlsx";
+            FileOutputStream fileOut = new FileOutputStream(excelPath);
+            workbook.write(fileOut);
+            fileOut.close();
+
+            JOptionPane.showMessageDialog(this, "Báo cáo đã được xuất thành công ra file Excel: " + excelPath);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi xuất báo cáo: " + ex.getMessage());
+        }
         HoadonXuat.setVisible(true);
     }//GEN-LAST:event_btnBaocaoXuatActionPerformed
 

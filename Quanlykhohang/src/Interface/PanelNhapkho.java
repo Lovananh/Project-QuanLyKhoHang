@@ -5,8 +5,16 @@
 package Interface;
 
 import Proccess.Hangnhap;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class PanelNhapkho extends javax.swing.JPanel {
 
@@ -224,7 +232,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
                             .addComponent(lblmahang)
                             .addComponent(lblSophieun)
                             .addComponent(lblSoluongtn))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtMakho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,16 +244,12 @@ public class PanelNhapkho extends javax.swing.JPanel {
                             .addComponent(lblMakho)
                             .addComponent(lblNgaynhap)
                             .addComponent(lblSoluongxn))))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtMathukho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMathukho)
-                            .addComponent(lblDongia))))
-                .addContainerGap())
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDongia)
+                    .addComponent(txtMathukho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMathukho)))
         );
 
         tableHangnhap.setModel(new javax.swing.table.DefaultTableModel(
@@ -296,7 +300,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
                 .addComponent(lblHangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
@@ -475,7 +479,69 @@ public class PanelNhapkho extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnInphieunhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInphieunhapActionPerformed
+        int selectedRow = tableHangnhap.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trong bảng để in phiếu nhập hàng.");
+            return;
+        }
 
+        // Tạo workbook Excel và sheet
+        XSSFWorkbook workbook = null;
+        XSSFSheet sheet;
+
+        File f = new File("D://danhsachHangnhap.xlsx");
+
+        try {
+            // Mở workbook nếu đã tồn tại, nếu không thì tạo mới
+            if (f.exists()) {
+                FileInputStream fis = new FileInputStream(f);
+                workbook = new XSSFWorkbook(fis);
+                sheet = workbook.getSheetAt(0);
+            } else {
+                workbook = new XSSFWorkbook();
+                sheet = workbook.createSheet("Danh sách nhập hàng");
+
+                // Tạo header cho sheet nếu chưa có
+                XSSFRow headerRow = sheet.createRow(0);
+                headerRow.createCell(0, CellType.STRING).setCellValue("Mã hàng");
+                headerRow.createCell(1, CellType.STRING).setCellValue("Mã kho");
+                headerRow.createCell(2, CellType.STRING).setCellValue("Số phiếu nhập");
+                headerRow.createCell(3, CellType.STRING).setCellValue("Ngày nhập");
+                headerRow.createCell(4, CellType.STRING).setCellValue("Mã thu kho");
+                headerRow.createCell(5, CellType.STRING).setCellValue("Số lượng xuất thực");
+                headerRow.createCell(6, CellType.STRING).setCellValue("Số lượng nhập thực");
+                headerRow.createCell(7, CellType.STRING).setCellValue("Đơn giá");
+            }
+
+            // Lấy dữ liệu từ hàng được chọn
+            XSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1); // Dòng tiếp theo cuối cùng
+
+            row.createCell(0, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 1).toString());
+            row.createCell(1, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 2).toString());
+            row.createCell(2, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 3).toString());
+            row.createCell(3, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 4).toString());
+            row.createCell(4, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 5).toString());
+            row.createCell(5, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 6).toString());
+            row.createCell(6, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 7).toString());
+            row.createCell(7, CellType.STRING).setCellValue(tableHangnhap.getValueAt(selectedRow, 8).toString());
+            
+            // Lưu workbook vào file Excel
+            try (FileOutputStream fileOut = new FileOutputStream(f)) {
+                workbook.write(fileOut);
+                JOptionPane.showMessageDialog(this, "In thành công D:\\danhsachHangnhap.xlsx");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi mở hoặc tạo workbook: " + e.getMessage());
+        } finally {
+            try {
+                workbook.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi đóng workbook: " + e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnInphieunhapActionPerformed
 
     private void tableHangnhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHangnhapMouseClicked

@@ -14,14 +14,6 @@ public class Hanghoa {
     private String Donvt;
     private String Tinhtrang;
 
-//    public Hanghoa(String Mahh, String Tenhh, int Soluong, double Gia, String Donvt, String Tinhtrang) {
-//        this.Mahh = Mahh;
-//        this.Tenhh = Tenhh;
-//        this.Soluong = Soluong;
-//        this.Gia = Gia;
-//        this.Donvt = Donvt;
-//        this.Tinhtrang = Tinhtrang;
-//    }
     public void setMahh(String Mahh) {
         this.Mahh = Mahh;
     }
@@ -149,7 +141,16 @@ public class Hanghoa {
         String sql = "DELETE FROM Hanghoa WHERE Mahang = ?";
         try (Connection conn = cn.connectSQL(); PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setString(1, mahanghoa);
-            return stm.executeUpdate() > 0;
+            int rowsDeleted = stm.executeUpdate();
+            if (rowsDeleted > 0) {
+                return true; // Xóa thành công
+            } else {
+                System.out.println("Không có hàng nào bị xóa. Có thể mã hàng hóa không tồn tại.");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Lỗi SQL khi thực hiện xóa: " + e.getMessage());
         }
     }
 

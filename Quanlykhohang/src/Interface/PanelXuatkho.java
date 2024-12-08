@@ -6,12 +6,21 @@ package Interface;
 
 import Proccess.Hanghoa;
 import Proccess.Hangxuat;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class PanelXuatkho extends javax.swing.JPanel {
 
@@ -281,7 +290,7 @@ public class PanelXuatkho extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -298,14 +307,14 @@ public class PanelXuatkho extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(468, 468, 468))
+                .addGap(450, 450, 450))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -350,18 +359,20 @@ public class PanelXuatkho extends javax.swing.JPanel {
         PanelXUATPHIEULayout.setHorizontalGroup(
             PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelXUATPHIEULayout.createSequentialGroup()
-                .addContainerGap(198, Short.MAX_VALUE)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129))
             .addGroup(PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelXUATPHIEULayout.createSequentialGroup()
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         PanelXUATPHIEULayout.setVerticalGroup(
             PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelXUATPHIEULayout.createSequentialGroup()
                 .addGap(102, 102, 102)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                .addGap(166, 166, 166))
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addGap(91, 91, 91))
             .addGroup(PanelXUATPHIEULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -537,33 +548,67 @@ public class PanelXuatkho extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnInphieuxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInphieuxuatActionPerformed
-        /*     int selectedRow = tableHangxuat.getSelectedRow();  // Lấy dòng được chọn
-        if (selectedRow != -1) {
-            // Lấy giá trị của Sophieuxuat và Mahang từ bảng
-            int sophieuxuat = (int) tableHangxuat.getValueAt(selectedRow, 1);  // Cột 1: Sophieuxuat
-            String mahang = (String) tableHangxuat.getValueAt(selectedRow, 0); // Cột 0: Mahang
-
-            // Gọi phương thức lấy dữ liệu từ cơ sở dữ liệu
-            try {
-                Phieuxuat phieuxuat = getPhieuxuatData(sophieuxuat, mahang);  // Phương thức lấy dữ liệu
-
-                // Cập nhật các JLabel trong JPanel mới với dữ liệu từ phieuxuat
-                lblSophieux.setText("Số phiếu xuất: " + phieuxuat.getSophieuxuat());
-                lblMahang.setText("Mã hàng: " + phieuxuat.getMahang());
-                lblSoluongx.setText("Số lượng xuất: " + phieuxuat.getSoluongxuat());
-                lblNgayxuat.setText("Ngày xuất: " + phieuxuat.getNgayxuat().toString());
-
-                // Chuyển sang JPanel hiển thị thông tin
-                PanelXUATPHIEU.setVisible(true); //  là JPanel hiển thị thông tin phiếu xuất
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Lỗi khi lấy dữ liệu phiếu xuất");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng trong bảng!");
+        int selectedRow = tableHangxuat.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trong bảng để in phiếu xuất hàng.");
+            return;
         }
-         */
+
+        // Tạo workbook Excel và sheet
+        XSSFWorkbook workbook = null;
+        XSSFSheet sheet;
+
+        File f = new File("D://danhsachHangxuat.xlsx");
+
+        try {
+            // Mở workbook nếu đã tồn tại, nếu không thì tạo mới
+            if (f.exists()) {
+                FileInputStream fis = new FileInputStream(f);
+                workbook = new XSSFWorkbook(fis);
+                sheet = workbook.getSheetAt(0);
+            } else {
+                workbook = new XSSFWorkbook();
+                sheet = workbook.createSheet("Danh sách xuất hàng");
+
+                // Tạo header cho sheet nếu chưa có
+                XSSFRow headerRow = sheet.createRow(0);
+                headerRow.createCell(0, CellType.STRING).setCellValue("Mã nhân viên");
+                headerRow.createCell(1, CellType.STRING).setCellValue("Số phiếu xuất");
+                headerRow.createCell(2, CellType.STRING).setCellValue("Ngày xuất");
+                headerRow.createCell(3, CellType.STRING).setCellValue("Mã thủ kho");
+                headerRow.createCell(4, CellType.STRING).setCellValue("Mã hàng");
+                headerRow.createCell(5, CellType.STRING).setCellValue("Số lượng xuất");
+                headerRow.createCell(6, CellType.STRING).setCellValue("Giá");
+            }
+
+            // Lấy dữ liệu từ hàng được chọn
+            XSSFRow row = sheet.createRow(sheet.getLastRowNum() + 1); // Dòng tiếp theo cuối cùng
+
+            row.createCell(0, CellType.STRING).setCellValue(tableHangxuat.getValueAt(selectedRow, 1).toString());
+            row.createCell(1, CellType.STRING).setCellValue(tableHangxuat.getValueAt(selectedRow, 2).toString());
+            row.createCell(2, CellType.STRING).setCellValue(tableHangxuat.getValueAt(selectedRow, 3).toString());
+            row.createCell(3, CellType.STRING).setCellValue(tableHangxuat.getValueAt(selectedRow, 4).toString());
+            row.createCell(4, CellType.STRING).setCellValue(tableHangxuat.getValueAt(selectedRow, 5).toString());
+            row.createCell(5, CellType.STRING).setCellValue(tableHangxuat.getValueAt(selectedRow, 6).toString());
+            row.createCell(6, CellType.STRING).setCellValue(tableHangxuat.getValueAt(selectedRow, 7).toString());
+
+            // Lưu workbook vào file Excel
+            try (FileOutputStream fileOut = new FileOutputStream(f)) {
+                workbook.write(fileOut);
+                JOptionPane.showMessageDialog(this, "In thành công D:\\danhsachHangxuat.xlsx");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi mở hoặc tạo workbook: " + e.getMessage());
+        } finally {
+            try {
+                workbook.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi đóng workbook: " + e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnInphieuxuatActionPerformed
 
     private void tableHangxuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHangxuatMouseClicked
