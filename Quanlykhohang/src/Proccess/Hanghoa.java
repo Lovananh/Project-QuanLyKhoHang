@@ -22,7 +22,6 @@ public class Hanghoa {
 //        this.Donvt = Donvt;
 //        this.Tinhtrang = Tinhtrang;
 //    }
-
     public void setMahh(String Mahh) {
         this.Mahh = Mahh;
     }
@@ -177,5 +176,27 @@ public class Hanghoa {
             System.err.println("Lỗi khi tìm kiếm hàng hóa: " + ex.getMessage());
         }
         return list;
+    }
+
+    // hiển thị tổng số lượng
+    public int[] getSoLuongNhapXuat() throws SQLException {
+        int tongNhap = 0;
+        int tongXuat = 0;
+
+        String query = """
+        SELECT   COALESCE(SUM(pn.Soluongtn), 0) AS TongNhap,
+                 COALESCE(SUM(px.Soluongxuat), 0) AS TongXuat
+        FROM Hanghoa h
+        LEFT JOIN PhieuNhap pn ON h.Mahang = pn.Mahang
+        LEFT JOIN PhieuXuat px ON h.Mahang = px.Mahang """;
+
+        try (Connection conn = cn.connectSQL(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                tongNhap = rs.getInt("TongNhap");
+                tongXuat = rs.getInt("TongXuat");
+            }
+        }
+        return new int[]{tongNhap, tongXuat};
     }
 }

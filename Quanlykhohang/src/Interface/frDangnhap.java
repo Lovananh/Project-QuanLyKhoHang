@@ -70,14 +70,15 @@ public class frDangnhap extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 191, 191));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
 
         txtTendangnhap.setBackground(new java.awt.Color(0, 153, 153));
         txtTendangnhap.setForeground(new java.awt.Color(0, 0, 0));
+        txtTendangnhap.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 102)));
 
         lblDangnhap.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblDangnhap.setForeground(new java.awt.Color(204, 204, 0));
+        lblDangnhap.setForeground(new java.awt.Color(0, 0, 102));
         lblDangnhap.setText("Đăng nhập");
 
         lblTendangnhap.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -105,7 +106,7 @@ public class frDangnhap extends javax.swing.JFrame {
         lblChuacotk.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         lblChuacotk.setForeground(new java.awt.Color(0, 0, 204));
         lblChuacotk.setText("Chưa có tài khoản ?");
-        lblChuacotk.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        lblChuacotk.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         lblChuacotk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblChuacotkMouseClicked(evt);
@@ -113,6 +114,7 @@ public class frDangnhap extends javax.swing.JFrame {
         });
 
         txtMatkhau.setBackground(new java.awt.Color(0, 153, 153));
+        txtMatkhau.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 102)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,7 +162,7 @@ public class frDangnhap extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThoat)
                     .addComponent(btnDangnhap))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 102, 0));

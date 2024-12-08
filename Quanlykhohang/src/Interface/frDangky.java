@@ -48,11 +48,13 @@ public class frDangky extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 191, 191));
 
+        lblMatkhau.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblMatkhau.setForeground(new java.awt.Color(0, 0, 0));
         lblMatkhau.setText("Mật khẩu :");
 
+        lblNhaplaimk.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblNhaplaimk.setForeground(new java.awt.Color(0, 0, 0));
         lblNhaplaimk.setText("Nhập lại mật khẩu :");
 
@@ -63,14 +65,16 @@ public class frDangky extends javax.swing.JFrame {
             }
         });
 
+        lblEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(0, 0, 0));
         lblEmail.setText("Email :");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Đăng ký");
 
+        lblHovaten.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblHovaten.setForeground(new java.awt.Color(0, 0, 0));
         lblHovaten.setText("Họ và tên :");
 
@@ -81,7 +85,8 @@ public class frDangky extends javax.swing.JFrame {
             }
         });
 
-        lblDacotk.setForeground(new java.awt.Color(51, 51, 255));
+        lblDacotk.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        lblDacotk.setForeground(new java.awt.Color(0, 0, 204));
         lblDacotk.setText(" Đã có tài khoản ?");
         lblDacotk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

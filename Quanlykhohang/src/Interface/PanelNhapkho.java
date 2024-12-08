@@ -34,6 +34,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
         btnThoat = new javax.swing.JButton();
         btnTaophieunhap = new javax.swing.JButton();
         btnInphieunhap = new javax.swing.JButton();
+        btnLammoi = new javax.swing.JButton();
         lblHangnhap = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblmahang = new javax.swing.JLabel();
@@ -97,20 +98,29 @@ public class PanelNhapkho extends javax.swing.JPanel {
             }
         });
 
+        btnLammoi.setText("Làm mới");
+        btnLammoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLammoiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
                 .addComponent(btnTaophieunhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
+                .addComponent(btnLammoi, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
                 .addComponent(btnInphieunhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
         );
@@ -123,7 +133,8 @@ public class PanelNhapkho extends javax.swing.JPanel {
                     .addComponent(btnXoa)
                     .addComponent(btnThoat)
                     .addComponent(btnTaophieunhap)
-                    .addComponent(btnInphieunhap))
+                    .addComponent(btnInphieunhap)
+                    .addComponent(btnLammoi))
                 .addContainerGap())
         );
 
@@ -139,6 +150,8 @@ public class PanelNhapkho extends javax.swing.JPanel {
         txtMahang.setToolTipText("");
 
         lblSophieun.setText("Số phiếu nhập :");
+
+        txtSophieun.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         lblMakho.setText("Mã kho :");
 
@@ -223,7 +236,6 @@ public class PanelNhapkho extends javax.swing.JPanel {
                             .addComponent(lblMakho)
                             .addComponent(lblNgaynhap)
                             .addComponent(lblSoluongxn))))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtMathukho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +299,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -323,53 +335,62 @@ public class PanelNhapkho extends javax.swing.JPanel {
         }
     }
     private void btnTaophieunhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaophieunhapActionPerformed
-        String mahang = txtMahang.getText();
-        String makho = txtMakho.getText();
-        int sophieun = Integer.parseInt(txtSophieun.getText());
-        java.sql.Date ngaynhap = java.sql.Date.valueOf(txtNgaynhap.getText()); // yyyy-MM-dd
-        String mathukho = txtMathukho.getText();
-        int soluongtn = Integer.parseInt(txtSoluongtn.getText());
-        int soluongxn = Integer.parseInt(txtSoluongxn.getText());
-        double dongia = Double.parseDouble(txtDongia.getText());
+        try {
 
-        if (makho.isEmpty() || mahang.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
-        } else {
-            try {
-                Hangnhap hangnhap = new Hangnhap();
-                if (hangnhap.getHangnhap(sophieun) != null) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Mã hàng đã tồn tại. Vui lòng nhập mã khác!");
-                    return;
+            String mahang = txtMahang.getText();
+            String makho = txtMakho.getText();
+            int sophieun = Integer.parseInt(txtSophieun.getText());
+            java.sql.Date ngaynhap = java.sql.Date.valueOf(txtNgaynhap.getText()); // yyyy-MM-dd
+            String mathukho = txtMathukho.getText();
+            int soluongtn = Integer.parseInt(txtSoluongtn.getText());
+            int soluongxn = Integer.parseInt(txtSoluongxn.getText());
+            double dongia = Double.parseDouble(txtDongia.getText());
+
+            if (makho.isEmpty() || mahang.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
+            } else {
+                try {
+                    Hangnhap hangnhap = new Hangnhap();
+                    if (hangnhap.getHangnhap(sophieun) != null) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Mã hàng đã tồn tại. Vui lòng nhập mã khác!");
+                        return;
+                    }
+
+                    // Thiết lập giá trị
+                    hangnhap.setmahang(mahang);
+                    hangnhap.setmakho(makho);
+                    hangnhap.setsophieun(sophieun);
+                    hangnhap.setngaynhap(ngaynhap);
+                    hangnhap.setmathukho(mathukho);
+                    hangnhap.setsoluongtn(soluongtn);
+                    hangnhap.setsoluongxn(soluongxn);
+                    hangnhap.setdongia(dongia);
+
+                    if (hangnhap.InsertHangnhap(hangnhap)) {
+                        loadDataToTable();
+
+                        btnSua.setEnabled(false);
+                        btnXoa.setEnabled(false);
+
+                        txtMahang.setText("");
+                        txtMakho.setText("");
+                        txtSophieun.setText("");
+                        txtNgaynhap.setText("");
+                        txtMathukho.setText("");
+                        txtSoluongtn.setText("");
+                        txtSoluongxn.setText("");
+                        txtDongia.setText("");
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Lỗi!");
                 }
-                
-                // Thiết lập giá trị
-                hangnhap.setmahang(mahang);
-                hangnhap.setmakho(makho);
-                hangnhap.setsophieun(sophieun);
-                hangnhap.setngaynhap(ngaynhap);
-                hangnhap.setmathukho(mathukho);
-                hangnhap.setsoluongtn(soluongtn);
-                hangnhap.setsoluongxn(soluongxn);
-                hangnhap.setdongia(dongia);
-
-                if (hangnhap.InsertHangnhap(hangnhap)) {
-                    loadDataToTable();
-
-                    txtMahang.setText("");
-                    txtMakho.setText("");
-                    txtSophieun.setText("");
-                    txtNgaynhap.setText("");
-                    txtMathukho.setText("");
-                    txtSoluongtn.setText("");
-                    txtSoluongxn.setText("");
-                    txtDongia.setText("");
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Thêm thất bại!");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(this, "Lỗi!");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
         }
     }//GEN-LAST:event_btnTaophieunhapActionPerformed
 
@@ -377,6 +398,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
 
         int row = tableHangnhap.getSelectedRow();
         if (row != -1) {
+
             String mahang = txtMahang.getText();
             String makho = txtMakho.getText();
             int sophieun = Integer.parseInt(txtSophieun.getText());
@@ -420,6 +442,8 @@ public class PanelNhapkho extends javax.swing.JPanel {
                     javax.swing.JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật dữ liệu!");
                 }
             }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng chọn hàng để sửa !");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -451,7 +475,7 @@ public class PanelNhapkho extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnInphieunhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInphieunhapActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnInphieunhapActionPerformed
 
     private void tableHangnhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHangnhapMouseClicked
@@ -466,6 +490,10 @@ public class PanelNhapkho extends javax.swing.JPanel {
             String soluongtn = tableHangnhap.getValueAt(selectRow, 7).toString();
             String gia = tableHangnhap.getValueAt(selectRow, 8).toString();
 
+            // không cho phếp sửa
+            txtMahang.setEditable(false);
+            txtSophieun.setEditable(false);
+
             txtMahang.setText(mahang);
             txtMakho.setText(makho);
             txtSophieun.setText(sophieun);
@@ -477,9 +505,21 @@ public class PanelNhapkho extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tableHangnhapMouseClicked
 
+    private void btnLammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLammoiActionPerformed
+        txtMahang.setText("");
+        txtMakho.setText("");
+        txtSophieun.setText("");
+        txtNgaynhap.setText("");
+        txtMathukho.setText("");
+        txtSoluongtn.setText("");
+        txtSoluongxn.setText("");
+        txtDongia.setText("");
+    }//GEN-LAST:event_btnLammoiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInphieunhap;
+    private javax.swing.JButton btnLammoi;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnTaophieunhap;
     private javax.swing.JButton btnThoat;
