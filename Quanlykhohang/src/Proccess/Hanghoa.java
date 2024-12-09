@@ -135,22 +135,25 @@ public class Hanghoa {
             return ps.executeUpdate() > 0;
         }
     }
+    // kiểm tra mahangtontai trước khi xóa
+    public boolean isMahangExists(String mahanghoa) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Hanghoa WHERE Mahang = ?";
+        try (Connection conn = cn.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, mahanghoa);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() && rs.getInt(1) > 0;
+        }
+    }
 
     // xoa 1 dong
     public boolean DeleteHanghoa(String mahanghoa) throws SQLException {
         String sql = "DELETE FROM Hanghoa WHERE Mahang = ?";
-        try (Connection conn = cn.connectSQL(); PreparedStatement stm = conn.prepareStatement(sql)) {
+
+        try (Connection conn = cn.connectSQL()) {
+            PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, mahanghoa);
             int rowsDeleted = stm.executeUpdate();
-            if (rowsDeleted > 0) {
-                return true; // Xóa thành công
-            } else {
-                System.out.println("Không có hàng nào bị xóa. Có thể mã hàng hóa không tồn tại.");
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new SQLException("Lỗi SQL khi thực hiện xóa: " + e.getMessage());
+            return rowsDeleted > 0;  // Trả về true nếu xóa thành công
         }
     }
 

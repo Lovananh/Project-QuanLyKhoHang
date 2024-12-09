@@ -329,12 +329,12 @@ public class frHanghoa extends javax.swing.JFrame {
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
         String Nhaptenhh = txtNhap.getText().trim();  // Lấy tên nhập vào từ TextField
         if (Nhaptenhh.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập tên hàng  để tìm kiếm.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập tên hàng để tìm kiếm.");
             return;
         }
 
         try {
-            // Tạo đối tượng Nhanvien
+            // Tạo đối tượng hanghoa
             Hanghoa hh = new Hanghoa();
 
             // Gọi phương thức timKiemhanghoaTheoTen thông qua đối tượng
@@ -360,47 +360,52 @@ public class frHanghoa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        String mahh = txtMahanghoa.getText();
-        String tenhh = txtTenhanghoa.getText();
-        int soluong = Integer.parseInt(txtSoluong.getText());
-        double gia = Double.parseDouble(txtGia.getText());
-        String donvitinh = txtDonvitinh.getText();
-        String tinhtrang = txtTinhtrang.getText();
+        try {
+            String mahh = txtMahanghoa.getText();
+            String tenhh = txtTenhanghoa.getText();
+            int soluong = Integer.parseInt(txtSoluong.getText());
+            double gia = Double.parseDouble(txtGia.getText());
+            String donvitinh = txtDonvitinh.getText();
+            String tinhtrang = txtTinhtrang.getText();
 
-        if (mahh.isEmpty() || tenhh.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, " Vui long nhap  day du thong tin");
-        } else {
-            try {
-                Hanghoa hanghoa = new Hanghoa();
-                if (hanghoa.getHanghoa(mahh) != null) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Mã loại đã tồn tại. Vui lòng nhập mã khác !");
-                    return;
+            if (mahh.isEmpty() || tenhh.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, " Vui long nhap  day du thong tin");
+            } else {
+                try {
+                    Hanghoa hanghoa = new Hanghoa();
+                    if (hanghoa.getHanghoa(mahh) != null) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Mã loại đã tồn tại. Vui lòng nhập mã khác !");
+                        return;
+                    }
+                    // thiet lap gia tri
+                    hanghoa.setMahh(mahh);
+                    hanghoa.setTenhh(tenhh);
+                    hanghoa.setSoluong(soluong);
+                    hanghoa.setGia(gia);
+                    hanghoa.setDonvt(donvitinh);
+                    hanghoa.setTinhtrang(tinhtrang);
+
+                    // goi ham tu lop hanghoa
+                    if (hanghoa.InsertHanghoa(hanghoa)) {
+                        loadDataToTable();
+
+                        txtMahanghoa.setText("");
+                        txtTenhanghoa.setText("");
+                        txtSoluong.setText("");
+                        txtGia.setText("");
+                        txtDonvitinh.setText("");
+                        txtTinhtrang.setText("");
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Them that bai!");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    javax.swing.JOptionPane.showMessageDialog(this, " Loi !");
                 }
-                // thiet lap gia tri
-                hanghoa.setMahh(mahh);
-                hanghoa.setTenhh(tenhh);
-                hanghoa.setSoluong(soluong);
-                hanghoa.setGia(gia);
-                hanghoa.setDonvt(donvitinh);
-                hanghoa.setTinhtrang(tinhtrang);
-
-                // goi ham tu lop hanghoa
-                if (hanghoa.InsertHanghoa(hanghoa)) {
-                    loadDataToTable();
-
-                    txtMahanghoa.setText("");
-                    txtTenhanghoa.setText("");
-                    txtSoluong.setText("");
-                    txtGia.setText("");
-                    txtDonvitinh.setText("");
-                    txtTinhtrang.setText("");
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Them that bai!");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(this, " Loi !");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, " Thêm thành công !");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -454,15 +459,19 @@ public class frHanghoa extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int row = tableHanghoa.getSelectedRow();
         if (row != -1) {
-            String maHH = tableHanghoa.getValueAt(row, 0).toString(); // Lay ma tu table
+            String mahang = tableHanghoa.getValueAt(row, 1).toString(); // Lấy mã từ bảng
             try {
                 Hanghoa hh = new Hanghoa();
-                if (hh.DeleteHanghoa(maHH)) {
-                    javax.swing.JOptionPane.showConfirmDialog(this, " xoa thanh cong !");
-                    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableHanghoa.getModel();
-                    model.removeRow(row);
+                if (hh.isMahangExists(mahang)) {
+                    if (hh.DeleteHanghoa(mahang)) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableHanghoa.getModel();
+                        model.removeRow(row);
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Xóa thất bại!!!");
+                    }
                 } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, " xoa that bai !!!");
+                    javax.swing.JOptionPane.showMessageDialog(this, "Mã hàng không tồn tại.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();

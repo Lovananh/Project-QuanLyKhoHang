@@ -372,10 +372,8 @@ public class PanelNhapkho extends javax.swing.JPanel {
 
                     if (hangnhap.InsertHangnhap(hangnhap)) {
                         loadDataToTable();
-
-                        btnSua.setEnabled(false);
-                        btnXoa.setEnabled(false);
-
+                        
+                         javax.swing.JOptionPane.showMessageDialog(this, "Thêm thành công");
                         txtMahang.setText("");
                         txtMakho.setText("");
                         txtSophieun.setText("");
@@ -557,8 +555,8 @@ public class PanelNhapkho extends javax.swing.JPanel {
             String gia = tableHangnhap.getValueAt(selectRow, 8).toString();
 
             // không cho phếp sửa
-            txtMahang.setEditable(false);
-            txtSophieun.setEditable(false);
+//            txtMahang.setEditable(false);
+//            txtSophieun.setEditable(false);
 
             txtMahang.setText(mahang);
             txtMakho.setText(makho);

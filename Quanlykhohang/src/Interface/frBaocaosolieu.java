@@ -5,10 +5,12 @@
 package Interface;
 
 import Proccess.DateDAO;
+import Proccess.DateDAO.TonKho;
 import Proccess.Hangnhap;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -618,10 +620,11 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
             // Tạo tiêu đề
             XSSFRow headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("Số phiếu nhập");
+            headerRow.createCell(0).setCellValue("Số Phiếu Nhập");
             headerRow.createCell(1).setCellValue("Tên Hàng");
             headerRow.createCell(2).setCellValue("Số Lượng");
-            headerRow.createCell(3).setCellValue("Ngày Nhập");
+            headerRow.createCell(3).setCellValue("Đơn Giá");
+            headerRow.createCell(4).setCellValue("Ngày Nhập");
 
             // Duyệt danh sách và thêm vào bảng
             int rowCount = 1;
@@ -630,7 +633,8 @@ public class frBaocaosolieu extends javax.swing.JFrame {
                 row.createCell(0).setCellValue(hang.getSophieunhap());
                 row.createCell(1).setCellValue(hang.getTenhang());
                 row.createCell(2).setCellValue(hang.getSoluong());
-                row.createCell(3).setCellValue(hang.getNgaynhap().toString());
+                row.createCell(3).setCellValue(hang.getDongia());
+                row.createCell(4).setCellValue(hang.getNgaynhap().toString());
             }
 
             // Ghi dữ liệu vào file Excel
@@ -659,13 +663,15 @@ public class frBaocaosolieu extends javax.swing.JFrame {
 
             DateDAO dateDAO = new DateDAO();
             List<DateDAO.Hangxuat> hangxuatList = dateDAO.getHangxuatByDate(fromDate, toDate);
+            // Sắp xếp danh sách theo ngày xuất tăng dần
+            hangxuatList.sort(Comparator.comparing(DateDAO.Hangxuat::getNgayxuat));
 
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Hang Xuat");
 
             XSSFRow headerRow = sheet.createRow(0);
             headerRow.createCell(0).setCellValue("Số phiếu xuất");
-            headerRow.createCell(1).setCellValue("Tên Hàng");
+            headerRow.createCell(1).setCellValue("Mã Hàng");
             headerRow.createCell(2).setCellValue("Số Lượng");
             headerRow.createCell(3).setCellValue("Ngày Xuất");
 
@@ -673,7 +679,7 @@ public class frBaocaosolieu extends javax.swing.JFrame {
             for (DateDAO.Hangxuat hang : hangxuatList) {
                 XSSFRow row = sheet.createRow(rowCount++);
                 row.createCell(0).setCellValue(hang.getSophieuxuat());
-                row.createCell(1).setCellValue(hang.getTenhang());
+                row.createCell(1).setCellValue(hang.getMahang());
                 row.createCell(2).setCellValue(hang.getSoluong());
                 row.createCell(3).setCellValue(hang.getNgayxuat().toString());
             }
@@ -693,6 +699,51 @@ public class frBaocaosolieu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBaocaoXuatActionPerformed
 
     private void btnBaocaoTonkhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaocaoTonkhoActionPerformed
+        try {
+            String fromDateStr = txtFromtonkho.getText(); // Input từ người dùng
+            String toDateStr = txtTotonkho.getText(); // Input từ người dùng
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fromDate = dateFormat.parse(fromDateStr);
+            Date toDate = dateFormat.parse(toDateStr);
+
+            DateDAO dateDAO = new DateDAO();
+            List<DateDAO.TonKho> tonKhoList = dateDAO.getBaocaoTonKho(fromDate, toDate);
+
+            // Sắp xếp tăng dần hoặc giảm dần theo tồn kho
+            tonKhoList.sort(Comparator.comparingInt(TonKho::getTonKho).reversed()); // Sắp giảm dần
+
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Ton Kho");
+
+            XSSFRow headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Mã Hàng");
+            headerRow.createCell(1).setCellValue("Tên Hàng");
+            headerRow.createCell(2).setCellValue("Tổng Nhập");
+            headerRow.createCell(3).setCellValue("Tổng Xuất");
+            headerRow.createCell(4).setCellValue("Tồn Kho");
+
+            int rowCount = 1;
+            for (TonKho ton : tonKhoList) {
+                XSSFRow row = sheet.createRow(rowCount++);
+                row.createCell(0).setCellValue(ton.getMahang());
+                row.createCell(1).setCellValue(ton.getTenhang());
+                row.createCell(2).setCellValue(ton.getTongNhap());
+                row.createCell(3).setCellValue(ton.getTongXuat());
+                row.createCell(4).setCellValue(ton.getTonKho());
+            }
+
+            String excelPath = "D:/Baocao_TonKho_Nhap.xlsx";
+            FileOutputStream fileOut = new FileOutputStream(excelPath);
+            workbook.write(fileOut);
+            fileOut.close();
+
+            JOptionPane.showMessageDialog(this, "Báo cáo tồn kho đã được xuất thành công ra file Excel: " + excelPath);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi xuất báo cáo: " + ex.getMessage());
+        }
+
         Hoadontonkho.setVisible(true);
     }//GEN-LAST:event_btnBaocaoTonkhoActionPerformed
 

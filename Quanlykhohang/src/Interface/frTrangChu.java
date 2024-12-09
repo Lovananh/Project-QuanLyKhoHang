@@ -100,10 +100,6 @@ public class frTrangChu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblKhohang = new javax.swing.JLabel();
-        PanelBaocaosolieu = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lblBaocaosolieu = new javax.swing.JLabel();
         PanelNhapkho = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -285,13 +281,13 @@ public class frTrangChu extends javax.swing.JFrame {
         lblTRANGCHU.setText("TRANG CHỦ");
         panelTRANGCHU.add(lblTRANGCHU, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 4, 655, -1));
 
-        PanelKhohang.setBackground(new java.awt.Color(255, 204, 51));
+        PanelKhohang.setBackground(new java.awt.Color(51, 255, 51));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/khohang.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Kho hàng ");
+        jLabel2.setText("Tồn kho ");
 
         lblKhohang.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblKhohang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -304,13 +300,12 @@ public class frTrangChu extends javax.swing.JFrame {
             .addGroup(PanelKhohangLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelKhohangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblKhohang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(PanelKhohangLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(64, Short.MAX_VALUE))
+                    .addComponent(lblKhohang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         PanelKhohangLayout.setVerticalGroup(
             PanelKhohangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,52 +318,11 @@ public class frTrangChu extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)))
                 .addGap(26, 26, 26)
-                .addComponent(lblKhohang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+                .addComponent(lblKhohang, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        panelTRANGCHU.add(PanelKhohang, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 85, -1, -1));
-
-        PanelBaocaosolieu.setBackground(new java.awt.Color(51, 255, 51));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Baocaosolieu.png"))); // NOI18N
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Báo cáo số liệu");
-
-        lblBaocaosolieu.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblBaocaosolieu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBaocaosolieu.setText("0");
-
-        javax.swing.GroupLayout PanelBaocaosolieuLayout = new javax.swing.GroupLayout(PanelBaocaosolieu);
-        PanelBaocaosolieu.setLayout(PanelBaocaosolieuLayout);
-        PanelBaocaosolieuLayout.setHorizontalGroup(
-            PanelBaocaosolieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelBaocaosolieuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelBaocaosolieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblBaocaosolieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(PanelBaocaosolieuLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        PanelBaocaosolieuLayout.setVerticalGroup(
-            PanelBaocaosolieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelBaocaosolieuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelBaocaosolieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(32, 32, 32)
-                .addComponent(lblBaocaosolieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
-        );
-
-        panelTRANGCHU.add(PanelBaocaosolieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 85, -1, -1));
+        panelTRANGCHU.add(PanelKhohang, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 220, 140));
 
         PanelNhapkho.setBackground(new java.awt.Color(51, 255, 51));
 
@@ -409,7 +363,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        panelTRANGCHU.add(PanelNhapkho, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 270, 181, -1));
+        panelTRANGCHU.add(PanelNhapkho, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 230, 140));
 
         PanelXuatkho.setBackground(new java.awt.Color(51, 255, 51));
 
@@ -431,13 +385,13 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PanelXuatkhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelXuatkhoLayout.createSequentialGroup()
-                        .addComponent(lblXuatkho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(PanelXuatkhoLayout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(jLabel8)
-                        .addGap(14, 14, 14))))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelXuatkhoLayout.createSequentialGroup()
+                        .addComponent(lblXuatkho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         PanelXuatkhoLayout.setVerticalGroup(
             PanelXuatkhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,7 +405,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        panelTRANGCHU.add(PanelXuatkho, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 270, 219, -1));
+        panelTRANGCHU.add(PanelXuatkho, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 230, 130));
 
         lblMenu.setBackground(new java.awt.Color(255, 255, 255));
         lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/menu-icon.png"))); // NOI18N
@@ -471,7 +425,7 @@ public class frTrangChu extends javax.swing.JFrame {
                 btnLocActionPerformed(evt);
             }
         });
-        panelTRANGCHU.add(btnLoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 45, -1, -1));
+        panelTRANGCHU.add(btnLoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, -1, -1));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Backgound3.jpg"))); // NOI18N
         panelTRANGCHU.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 710, 440));
@@ -534,7 +488,7 @@ public class frTrangChu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 709, Short.MAX_VALUE)
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -692,7 +646,6 @@ public class frTrangChu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;
-    private javax.swing.JPanel PanelBaocaosolieu;
     private javax.swing.JPanel PanelKhohang;
     private javax.swing.JPanel PanelNhapkho;
     private javax.swing.JPanel PanelXuatkho;
@@ -708,8 +661,6 @@ public class frTrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btnXuatkho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -718,7 +669,6 @@ public class frTrangChu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblBackground;
-    private javax.swing.JLabel lblBaocaosolieu;
     private javax.swing.JLabel lblKhohang;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblNhapkho;
